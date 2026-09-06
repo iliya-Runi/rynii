@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+     <!-- ===== FAVICON: РУНА АНСУЗ В КРУГЕ ===== -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='none' stroke='%23c9a050' stroke-width='3'/><text x='50' y='68' font-size='55' text-anchor='middle' fill='%23c9a050' font-weight='bold' font-family='serif'>ᚨ</text></svg>">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мифология — Руны Старшего Футарка</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .myth-page {
+            padding: 20px 0;
+        }
+        
+        .myth-page .myth-section {
+            margin-top: 20px;
+        }
+        
+        #myth {
+            scroll-margin-top: 100px;
+        }
+
+        .worlds-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .world-card {
+            background: rgba(20, 20, 35, 0.6);
+            border: 1px solid rgba(201, 160, 80, 0.06);
+            border-radius: 16px;
+            padding: 22px 20px 18px;
+            transition: 0.4s;
+            scroll-margin-top: 90px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .world-card:hover {
+            border-color: rgba(201, 160, 80, 0.25);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .world-card .world-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+
+        .world-card .world-symbol {
+            font-size: 28px;
+            color: #c9a050;
+            opacity: 0.8;
+            flex-shrink: 0;
+        }
+
+        .world-card .world-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #e8ddd0;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 1px;
+        }
+
+        .world-card .world-name-en {
+            font-size: 11px;
+            color: #6a5f50;
+            letter-spacing: 1px;
+            font-family: 'Georgia', serif;
+            margin-left: auto;
+        }
+
+        .world-card .world-desc {
+            color: #b8ab9a;
+            font-size: 13.5px;
+            line-height: 1.8;
+            font-family: 'Georgia', serif;
+            margin: 6px 0 10px;
+            flex: 1;
+        }
+
+        .world-card .world-desc strong {
+            color: #c9a050;
+        }
+
+        .world-card .world-tag {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 3px 16px;
+            border: 1px solid rgba(201, 160, 80, 0.1);
+            border-radius: 30px;
+            font-size: 10px;
+            color: #c9a050;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-family: 'Cinzel', serif;
+            align-self: flex-start;
+        }
+
+        .prologue {
+            background: rgba(20, 20, 35, 0.3);
+            border-left: 3px solid rgba(201, 160, 80, 0.2);
+            padding: 25px 30px;
+            margin-bottom: 40px;
+            border-radius: 0 12px 12px 0;
+            font-size: 16px;
+            color: #b8ab9a;
+            line-height: 1.9;
+        }
+
+        .prologue strong {
+            color: #c9a050;
+        }
+
+        .prologue .rune-line {
+            display: block;
+            text-align: center;
+            font-size: 22px;
+            color: #c9a050;
+            opacity: 0.4;
+            margin-top: 15px;
+            letter-spacing: 6px;
+        }
+
+        .myth-section h2 {
+            font-size: 28px;
+            color: #e8c85a;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .myth-section .myth-text {
+            color: #c4b8a8;
+            line-height: 2;
+            font-size: 15px;
+            font-family: 'Georgia', serif;
+            text-align: left;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .myth-section .myth-text h3 {
+            color: #e8c85a;
+            font-size: 20px;
+            letter-spacing: 2px;
+            margin: 30px 0 10px;
+        }
+
+        .myth-section .myth-text p {
+            margin-bottom: 15px;
+        }
+
+        .rune-gods-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px 20px;
+            margin: 15px 0 25px;
+            font-size: 14px;
+        }
+
+        .rune-gods-grid .rune-item {
+            color: #c4b8a8;
+        }
+
+        .rune-gods-grid .rune-item .rune-symbol {
+            color: #e8c85a;
+        }
+
+        .ragnarok-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 20px;
+            margin: 15px 0 20px;
+            font-size: 14px;
+        }
+
+        .ragnarok-grid .ragnarok-item {
+            color: #c4b8a8;
+        }
+
+        .ragnarok-grid .ragnarok-item .ragnarok-symbol {
+            color: #e8c85a;
+        }
+
+        .ragnarok-grid .ragnarok-full {
+            grid-column: 1 / -1;
+            text-align: center;
+            color: #e8c85a;
+        }
+
+        @media (max-width: 992px) {
+            .worlds-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .myth-section h2 {
+                font-size: 24px;
+            }
+            .worlds-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .rune-gods-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .ragnarok-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .worlds-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .world-card .world-name {
+                font-size: 18px;
+            }
+            .world-card .world-name-en {
+                margin-left: 0;
+            }
+            .world-card .world-header {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .rune-gods-grid {
+                grid-template-columns: 1fr;
+            }
+            .ragnarok-grid {
+                grid-template-columns: 1fr;
+            }
+            .ragnarok-grid .ragnarok-full {
+                grid-column: 1 / -1;
+            }
+            .myth-section h2 {
+                font-size: 20px;
+            }
+            .worlds-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+       <!-- ===== ШАПКА С МЕНЮ В ДВА РЯДА ===== -->
+        <header>
+            <div class="logo">
+                ᛝᚲᚷᛉᚠᚨᚱ
+                <span>Старший Футарк · 24 руны</span>
+            </div>
+            <!-- ===== НАВИГАЦИЯ В ДВА РЯДА ===== -->
+            <nav>
+                <!-- ПЕРВЫЙ РЯД: Основные разделы (по левому краю) -->
+                <div class="nav-row nav-row-left">
+                    <a href="index.html" class="main-link">
+                        Главная
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚱ</span>
+                            <span class="highlight">Вернуться на главную</span><br>
+                            Главная страница с руническим кругом
+                        </span>
+                    </a>
+                    <a href="runes.html" class="runes-link">
+                        24 Руны Футарха
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚠ</span>
+                            <span class="highlight">Все 24 руны Футарка</span><br>
+                            Значения, символы и атты
+                        </span>
+                    </a>
+                    <a href="rune-horoscope.html" class="horoscope-link">
+                        Рунический гороскоп
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛃ</span>
+                            <span class="highlight">Рунический гороскоп</span><br>
+                            Предсказание по дате рождения
+                        </span>
+                    </a>
+                    <a href="rune-divination.html" class="divination-link">
+                        Гадание на рунах
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛉ</span>
+                            <span class="highlight">Онлайн-гадание на рунах</span><br>
+                            Брось руны и узнай судьбу
+                        </span>
+                    </a>
+                    <a href="gods.html" class="gods-link">
+                        Асы и Боги Скандинавии
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚨ</span>
+                            <span class="highlight">Скандинавские боги</span><br>
+                            Один, Тор, Локи, Фрейя и другие
+                        </span>
+                    </a>
+                    <a href="mifolgi.html" class="myth-link">
+                        Скандинавская мифология
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛝ</span>
+                            <span class="highlight">Подробная страница</span><br>
+                            Девять миров, руны и боги
+                        </span>
+                    </a>
+                    <a href="about.html" class="about-link">
+                        О создании сайте
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛉ</span>
+                            <span class="highlight">О проекте</span><br>
+                            Создатель, цели и поддержка
+                        </span>
+                    </a>
+                </div>
+
+                <!-- ВТОРОЙ РЯД: Консультация, Обратная связь, Поддержка (прижаты к правому краю) -->
+                <div class="nav-row nav-row-right">
+                    <a href="feedback.html" class="feedback-link">
+                        📧 Обратная связь с поддержкой
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚨ</span>
+                            <span class="highlight">Написать разработчику сайта</span><br>
+                            Вопросы, идеи и поддержка
+                        </span>
+                    </a>
+                    <a href="consultation.html" class="support-link" style="color: #c9a050; border-bottom-color: rgba(201,160,80,0.3);">
+                        ✈️ Консультация рунолога
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚨ</span>
+                            <span class="highlight">Консультация рунолога</span><br>
+                            Помощь в вопросах жизни и судьбы
+                        </span>
+                    </a>
+                    <a href="support.html" class="support-link" style="color: #c9a050; border-bottom-color: rgba(201,160,80,0.3);">
+                        ₽ Финансовая поддержка сайта
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛉ</span>
+                            <span class="highlight">Поддержать создателя</span><br>
+                            Финансовая поддержка, информация об авторе
+                        </span>
+                    </a>
+                </div>
+            </nav>
+        </header>
+
+        <!-- ===== СТРАНИЦА МИФОЛОГИИ ===== -->
+        <section class="myth-page" id="myth">
+
+            <section class="myth-section" style="margin-top: 20px; background: rgba(20, 20, 35, 0.4); border: 1px solid rgba(201, 160, 80, 0.08); padding: 30px 20px; border-radius: 20px;">
+
+                <h2 style="font-size: 28px; color: #e8c85a; letter-spacing: 3px; margin-bottom: 15px; text-align: center;">
+                    ✦ Космология, боги и судьба ✦
+                </h2>
+
+                <div class="myth-text">
+
+                    <h3 style="color: #e8c85a; font-size: 20px; letter-spacing: 2px; margin: 20px 0 10px;">✦ Иггдрасиль — Девять миров</h3>
+
+                    <div class="prologue">
+                        <p>
+                            <strong>Мир возник из великой бездны Гиннунгагап.</strong> Там встретились иней и холод Нифльхейма с жаром и пламенем Муспельхейма.
+                            От этой встречи родились первый великан Имир и корова Аудумла. Корова вскормила Имира своим молоком и, слизывая соленые камни, «вылизала» первого бога — Бури.
+                            Внук Бури, Один, вместе с братьями Вили и Ве убили великана Имира. Из его тела они создали весь мир.
+                        </p>
+                        <p>
+                            Плоть Имира стала землей. Кровь — морем и океанами. Кости — горами. Череп — небесным сводом. Волосы — лесами. Мозг — облаками. Брови — стеной Мидгарда, защищающей мир людей.
+                            Затем боги создали первых людей: из ясеня — мужчину Аска, из ивы — женщину Эмблу, и поселили их в Мидгарде.
+                        </p>
+                        <span class="rune-line">ᛝ ᚲ ᚷ ᛉ ᚠ ᚨ ᚱ</span>
+                    </div>
+
+                    <div class="worlds-grid">
+
+                        <div class="world-card" id="asgard">
+                            <div class="world-header">
+                                <span class="world-symbol">ᛉ</span>
+                                <span class="world-name">Асгард</span>
+                                <span class="world-name-en">Ásgarðr</span>
+                            </div>
+                            <div class="world-desc">
+                                <strong>Мир богов-асов.</strong> Здесь находится <strong>Вальгалла</strong> — место, где хранятся души павших воинов. Соединён с миром людей <strong>Бифростом</strong> — «Радужным мостом».
+                            </div>
+                            <span class="world-tag">Мир основы порядка</span>
+                        </div>
+
+                        <div class="world-card" id="midgard">
+                            <div class="world-header">
+                                <span class="world-symbol">ᛗ</span>
+                                <span class="world-name">Мидгард</span>
+                                <span class="world-name-en">Miðgarðr</span>
+                            </div>
+                            <div class="world-desc">
+                                <strong>Мир людей,</strong> где они живут, набираются опыта и ошибаются. В котором плавает <strong>Мировой Змей Ёрмунганд</strong> — держа на себе весь Мидгард, являясь его частью.
+                            </div>
+                            <span class="world-tag">Проявленный мир</span>
+                        </div>
+
+                        <div class="world-card" id="vanaheim">
+                            <div class="world-header">
+                                <span class="world-symbol">ᛝ</span>
+                                <span class="world-name">Ванахейм</span>
+                                <span class="world-name-en">Vanaheimr</span>
+                            </div>
+                            <div class="world-desc">
+                                <strong>Мир Богов-Ванов.</strong> Здесь обитают <strong>Духи природы</strong>. Фрейр и Фрейя — это <strong>Ваны</strong>, они отвечают за здоровье, магию, урожай и предвиденье.
+                            </div>
+                            <span class="world-tag">Мир законов природы</span>
+                        </div>
+
+                        <div class="world-card" id="alfheim">
+                            <div class="world-header">
+                                <span class="world-symbol">ᛋ</span>
+                                <span class="world-name">Альфхейм</span>
+                                <span class="world-name-en">Álfheimr</span>
+                            </div>
+                            <div class="world-desc">
+                                <strong>Мир Светлых Эльфов.</strong> Существа, отвечающие за гармонию и радость. Управляется Фрейром. Здесь рождаются идеальные формы, градиенты и тени.
+                            </div>
+                            <span class="world-tag">Свет · Знание</span>
+                        </div>
+
+                        <div class="world-card" id="svartalfheim">
+                            <div class="world-header">
+                                <span class="world-symbol">ᛈ</span>
+                                <span class="world-name">Свартальфхейм</span>
+                                <span class="world-name-en">Svartálfheimr</span>
+                            </div>
+                            <div class="world-desc">
+                                <strong>Мир Тёмных Эльфов.</strong> Здесь куётся <strong>Железо</strong>. Выкованы священные артефакты: <strong>Мьёльнир</strong> — орудие Тора, <strong>Гунгнир</strong> — копьё, что никогда не промахивается, <strong>Драупнир</strong> — кольцо Одина.
+                            </div>
+                            <span class="world-tag">Мир-кузница</span>
+                        </div>
+
+                        <div class="world-card" id="jotunheim">
+                            <div class="world-header">
+                                <span class="world-symbol">ᛇ</span>
+                                <span class="world-name">Ётунхейм</span>
+                                <span class="world-name-en">Jötunheimr</span>
+                            </div>
+                            <div class="world-desc">
+                                <strong>Мир Великанов-ётунов.</strong> Извечные враги богов-Асов. Здесь живут <strong>оборотни и тайные знания</strong>. Тор постоянно воюет с ними.
+                            </div>
+                            <span class="world-tag">Тайные знания и союзы</span>
+                        </div>
+
+                        <div class="world-card" id="muspelheim">
+                            <div class="world-header">
+                                <span class="world-symbol">ᚲ</span>
+                                <span class="world-name">Муспельхейм</span>
+                                <span class="world-name-en">Muspelheimr</span>
+                            </div>
+                            <div class="world-desc">
+                                <strong>Мир изначального пламени.</strong> Родина <strong>Огненных Великанов</strong>. Главный из них — Сурт, который в день <strong>«Рагнарёка»</strong> сожжёт всё дотла, чтобы мир переродился.
+                            </div>
+                            <span class="world-tag">Разрушение · Очищение</span>
+                        </div>
+
+                        <div class="world-card" id="niflheim">
+                            <div class="world-header">
+                                <span class="world-symbol">│</span>
+                                <span class="world-name">Нифльхейм</span>
+                                <span class="world-name-en">Niflheimr</span>
+                            </div>
+                            <div class="world-desc">
+                                <strong>Мир Льда и Туманов.</strong> Здесь хранятся <strong>ошибки и непонятые знания</strong>. Именно из встречи холодной пустоты (Нифльхейм) и огненного жара (Муспельхейма) родился <strong>Изначальный мир</strong>.
+                            </div>
+                            <span class="world-tag">Мир холода и остановки</span>
+                        </div>
+
+                        <div class="world-card" id="helheim">
+                            <div class="world-header">
+                                <span class="world-symbol">ᛟ</span>
+                                <span class="world-name">Хельхейм</span>
+                                <span class="world-name-en">Helheimr</span>
+                            </div>
+                            <div class="world-desc">
+                                <strong>Мир мёртвых.</strong> Управляется богиней <strong>Хель</strong>. Сюда попадают все, кто умер простой смертью от болезни или старости. Но не в наказание за ошибки, а как последнее пристанище перед Рагнарёком.
+                            </div>
+                            <span class="world-tag">Остановка · Смерть и покой</span>
+                        </div>
+
+                    </div>
+
+                    <h3 style="color: #e8c85a; font-size: 20px; letter-spacing: 2px; margin: 30px 0 10px;">✦ Руны и их божественные покровители</h3>
+
+                    <p style="margin-bottom: 15px;">
+                        Каждая руна Старшего Футарка связана с определённым божеством или силой, которая раскрывает её истинное значение:
+                    </p>
+
+                    <div class="rune-gods-grid">
+                        <div class="rune-item"><span class="rune-symbol">ᚠ</span> Феху — Фрейр</div>
+                        <div class="rune-item"><span class="rune-symbol">ᚢ</span> Уруз — Фрейр</div>
+                        <div class="rune-item"><span class="rune-symbol">ᚦ</span> Турисаз — Тор</div>
+                        <div class="rune-item"><span class="rune-symbol">ᚨ</span> Ансуз — Один</div>
+                        <div class="rune-item"><span class="rune-symbol">ᚱ</span> Райдо — Один</div>
+                        <div class="rune-item"><span class="rune-symbol">ᚲ</span> Кеназ — Локи</div>
+                        <div class="rune-item"><span class="rune-symbol">ᚷ</span> Гебо — Один</div>
+                        <div class="rune-item"><span class="rune-symbol">ᚹ</span> Вуньо — Фрейр</div>
+                        <div class="rune-item"><span class="rune-symbol">ᚺ</span> Хагалаз — Хеймдалль</div>
+                        <div class="rune-item"><span class="rune-symbol">ᚾ</span> Наутиз — Хеймдалль</div>
+                        <div class="rune-item"><span class="rune-symbol">ᛁ</span> Иса — Хеймдалль</div>
+                        <div class="rune-item"><span class="rune-symbol">ᛃ</span> Йера — Фрейр</div>
+                        <div class="rune-item"><span class="rune-symbol">ᛇ</span> Эйваз — Ясень Игдрасиль</div>
+                        <div class="rune-item"><span class="rune-symbol">ᛈ</span> Перто — Фрейя</div>
+                        <div class="rune-item"><span class="rune-symbol">ᛉ</span> Альгиз — Хеймдалль</div>
+                        <div class="rune-item"><span class="rune-symbol">ᛋ</span> Соулу — Бальдр</div>
+                        <div class="rune-item"><span class="rune-symbol">ᛏ</span> Тейваз — Тюр</div>
+                        <div class="rune-item"><span class="rune-symbol">ᛒ</span> Беркана — Фрейя</div>
+                        <div class="rune-item"><span class="rune-symbol">ᛖ</span> Эхваз — Символ коня</div>
+                        <div class="rune-item"><span class="rune-symbol">ᛗ</span> Манназ — Хеймдалль</div>
+                        <div class="rune-item"><span class="rune-symbol">ᛚ</span> Лагуз — Ньёрд</div>
+                        <div class="rune-item"><span class="rune-symbol">ᛝ</span> Ингуз — Фрейр</div>
+                        <div class="rune-item"><span class="rune-symbol">ᛟ</span> Отал — Один</div>
+                        <div class="rune-item"><span class="rune-symbol">ᛞ</span> Дагаз — Рассвет</div>
+                    </div>
+
+                    <p style="text-align: center; color: #e0bf91; font-size: 14px; font-style: italic; margin-bottom: 25px;">
+                        Каждая руна — не просто символ, а дверь в мир определённого божества.
+                    </p>
+
+                    <h3 style="color: #e8c85a; font-size: 20px; letter-spacing: 2px; margin: 30px 0 10px;">✦ Рагнарёк — Судьба богов</h3>
+
+                    <p style="margin-bottom: 15px;">
+                        <strong style="color: #e8c85a;">Рагнарёк</strong> — не конец, а начало нового цикла. Битва, в которой падут боги, но мир возродится из пепла. Это учение о том, что всё имеет свою цену, и даже великие не вечны.
+                    </p>
+
+                    <div class="ragnarok-grid">
+                        <div class="ragnarok-item"><span class="ragnarok-symbol">✦</span> Фенрир разорвёт цепи и поглотит Одина</div>
+                        <div class="ragnarok-item"><span class="ragnarok-symbol">✦</span> Тор сразит Мирового Змея, но погибнет</div>
+                        <div class="ragnarok-item"><span class="ragnarok-symbol">✦</span> Локи выйдет на свободу и поведёт силы хаоса</div>
+                        <div class="ragnarok-item"><span class="ragnarok-symbol">✦</span> Сурт сожжёт мир своим огнём</div>
+                    </div>
+
+                </div>
+            </section>
+
+        </section>
+
+        <!-- ===== ПОДВАЛ ===== -->
+        <footer>
+            <p>ᛝᚲᚷᛉᚠᚨᚱ · 24 руны Старшего Футарка</p>
+            <p style="margin-top: 8px;">
+                <a href="index.html">Главная</a> ·
+                <a href="runes.html">Руны</a> ·
+                <a href="mifolgi.html">Мифология</a> ·
+                <a href="about.html">О сайте</a>
+            </p>
+            <p style="margin-top: 15px; font-size: 12px; opacity: 0.6;">
+                © 2026 · ᚲᛃᚨᛉᚷᚠᚱ Сделано с душой и мудростью
+            </p>
+        </footer>
+
+    </div>
+
+</body>
+</html>

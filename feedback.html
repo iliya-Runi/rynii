@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+     <!-- ===== FAVICON: РУНА АНСУЗ В КРУГЕ ===== -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='none' stroke='%23c9a050' stroke-width='3'/><text x='50' y='68' font-size='55' text-anchor='middle' fill='%23c9a050' font-weight='bold' font-family='serif'>ᚨ</text></svg>">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обратная связь | Старший Футарк</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .feedback-page {
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .feedback-page h1 {
+            font-size: 36px;
+            color: #c9a050;
+            letter-spacing: 4px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .feedback-page .subtitle {
+            text-align: center;
+            color: #b8ab9a;
+            font-size: 16px;
+            font-family: 'Georgia', serif;
+            margin-bottom: 35px;
+            line-height: 1.8;
+        }
+
+        .telegram-card {
+            background: rgba(20, 20, 35, 0.5);
+            border: 1px solid rgba(201, 160, 80, 0.08);
+            border-radius: 20px;
+            padding: 50px 30px;
+            text-align: center;
+            transition: 0.4s;
+        }
+
+        .telegram-card:hover {
+            border-color: rgba(201, 160, 80, 0.2);
+            box-shadow: 0 10px 40px rgba(201, 160, 80, 0.05);
+        }
+
+        .telegram-card .icon {
+            font-size: 64px;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .telegram-card h2 {
+            color: #e8ddd0;
+            font-size: 24px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .telegram-card p {
+            color: #b8ab9a;
+            font-size: 16px;
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+            max-width: 500px;
+            margin: 0 auto 25px;
+        }
+
+        .telegram-btn {
+            display: inline-block;
+            padding: 16px 50px;
+            background: #0088cc;
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 2px;
+            transition: 0.3s;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .telegram-btn:hover {
+            background: #006699;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 136, 204, 0.3);
+        }
+
+        .telegram-btn .tg-icon {
+            display: inline-block;
+            margin-right: 10px;
+            font-size: 22px;
+        }
+
+        .feedback-page .rune-signature {
+            text-align: center;
+            font-size: 28px;
+            letter-spacing: 8px;
+            color: #c9a050;
+            opacity: 0.3;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .feedback-page h1 {
+                font-size: 28px;
+            }
+            .telegram-card {
+                padding: 35px 20px;
+            }
+            .telegram-card .icon {
+                font-size: 48px;
+            }
+            .telegram-btn {
+                padding: 14px 35px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .feedback-page h1 {
+                font-size: 22px;
+            }
+            .telegram-card h2 {
+                font-size: 20px;
+            }
+            .telegram-card p {
+                font-size: 14px;
+            }
+            .telegram-btn {
+                padding: 12px 25px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+      
+         <!-- ===== ШАПКА С МЕНЮ В ДВА РЯДА ===== -->
+        <header>
+            <div class="logo">
+                ᛝᚲᚷᛉᚠᚨᚱ
+                <span>Старший Футарк · 24 руны</span>
+            </div>
+            <!-- ===== НАВИГАЦИЯ В ДВА РЯДА ===== -->
+            <nav>
+                <!-- ПЕРВЫЙ РЯД: Основные разделы (по левому краю) -->
+                <div class="nav-row nav-row-left">
+                    <a href="index.html" class="main-link">
+                        Главная
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚱ</span>
+                            <span class="highlight">Вернуться на главную</span><br>
+                            Главная страница с руническим кругом
+                        </span>
+                    </a>
+                    <a href="runes.html" class="runes-link">
+                        24 Руны Футарха
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚠ</span>
+                            <span class="highlight">Все 24 руны Футарка</span><br>
+                            Значения, символы и атты
+                        </span>
+                    </a>
+                    <a href="rune-horoscope.html" class="horoscope-link">
+                        Рунический гороскоп
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛃ</span>
+                            <span class="highlight">Рунический гороскоп</span><br>
+                            Предсказание по дате рождения
+                        </span>
+                    </a>
+                    <a href="rune-divination.html" class="divination-link">
+                        Гадание на рунах
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛉ</span>
+                            <span class="highlight">Онлайн-гадание на рунах</span><br>
+                            Брось руны и узнай судьбу
+                        </span>
+                    </a>
+                    <a href="gods.html" class="gods-link">
+                        Асы и Боги Скандинавии
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚨ</span>
+                            <span class="highlight">Скандинавские боги</span><br>
+                            Один, Тор, Локи, Фрейя и другие
+                        </span>
+                    </a>
+                    <a href="mifolgi.html" class="myth-link">
+                        Скандинавская мифология
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛝ</span>
+                            <span class="highlight">Подробная страница</span><br>
+                            Девять миров, руны и боги
+                        </span>
+                    </a>
+                    <a href="about.html" class="about-link">
+                        О создании сайте
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛉ</span>
+                            <span class="highlight">О проекте</span><br>
+                            Создатель, цели и поддержка
+                        </span>
+                    </a>
+                </div>
+
+                <!-- ВТОРОЙ РЯД: Консультация, Обратная связь, Поддержка (прижаты к правому краю) -->
+                <div class="nav-row nav-row-right">
+                    <a href="feedback.html" class="feedback-link">
+                        📧 Обратная связь с поддержкой
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚨ</span>
+                            <span class="highlight">Написать разработчику сайта</span><br>
+                            Вопросы, идеи и поддержка
+                        </span>
+                    </a>
+                    <a href="consultation.html" class="support-link" style="color: #c9a050; border-bottom-color: rgba(201,160,80,0.3);">
+                        ✈️ Консультация рунолога
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚨ</span>
+                            <span class="highlight">Консультация рунолога</span><br>
+                            Помощь в вопросах жизни и судьбы
+                        </span>
+                    </a>
+                    <a href="support.html" class="support-link" style="color: #c9a050; border-bottom-color: rgba(201,160,80,0.3);">
+                        ₽ Финансовая поддержка сайта
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛉ</span>
+                            <span class="highlight">Поддержать создателя</span><br>
+                            Финансовая поддержка, информация об авторе
+                        </span>
+                    </a>
+                </div>
+            </nav>
+        </header>
+
+
+        <!-- ===== СТРАНИЦА ОБРАТНОЙ СВЯЗИ ===== -->
+        <section class="feedback-page">
+            <h1>✦ Обратная связь ✦</h1>
+            <p class="subtitle">
+                Ваши вопросы, предложения и идеи помогут сделать сайт лучше.<br>
+                Напишите нам в Telegram — мы всегда на связи ✦
+            </p>
+
+            <div class="telegram-card">
+                <span class="icon">✉️</span>
+                <h2>Напишите нам в Telegram</h2>
+                <p>
+                    Задайте вопрос, оставьте предложение или просто поделитесь впечатлениями.<br>
+                    Мы читаем каждое сообщение и отвечаем на них.
+                </p>
+                <a href="https://t.me/FutharkRunes" target="_blank" class="telegram-btn">
+                    <span class="tg-icon">✈️</span> Перейти в Telegram
+                </a>
+                <div style="margin-top: 5px; font-size: 15px; color: #ccab7c; font-style: italic;">
+                    Наш канал: @FutharkRunes
+                </div>
+<div style="margin-top: 10px; font-size: 15px; color: #ccab7c; font-style: italic;">
+                    
+                </div>
+                   <!-- Кнопка Email (в том же стиле) -->
+    <a href="https://e.mail.ru/compose?to=futhark_podergca@mail.ru" target="_blank" class="email-btn"
+   style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 35px; 
+          background: rgba(201,160,80,0.1); border: 1px solid rgba(201,160,80,0.25); 
+          border-radius: 30px; color: #e8c85a; text-decoration: none; font-weight: 700; 
+          letter-spacing: 2px; font-size: 16px; transition: 0.3s; font-family: 'Cinzel', serif;"
+   onmouseover="this.style.background='rgba(201,160,80,0.2)'; this.style.borderColor='#c9a050'; this.style.transform='translateY(-3px)'; this.style.boxShadow='0 10px 30px rgba(201,160,80,0.15)';"
+   onmouseout="this.style.background='rgba(201,160,80,0.1)'; this.style.borderColor='rgba(201,160,80,0.25)'; this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+    <span style="font-size: 18px;">✉️</span> Написать на почту (Mail.ru)
+</a>
+<div style="margin-top: 10px; font-size: 15px; color: #ccab7c; font-style: italic;">
+                    Наша почта: futhark_podergca@mail.r
+                </div>
+    </div>
+
+</div>
+            </div>
+            <div class="rune-signature">
+                ᚲᛃᚨᛉᚷᚠᚱ
+            </div>
+        </section>
+
+        <!-- ===== ПОДВАЛ ===== -->
+        <footer>
+            <p>ᛝᚲᚷᛉᚠᚨᚱ · 24 руны Старшего Футарка</p>
+            <p style="margin-top: 8px;">
+                <a href="index.html">Главная</a> ·
+                <a href="about.html">О сайте</a>
+            </p>
+            <p style="margin-top: 15px; font-size: 12px; opacity: 0.6;">
+                © 2026 · ᚲᛃᚨᛉᚷᚠᚱ Сделано с душой и мудростью
+            </p>
+        </footer>
+
+    </div>
+
+</body>
+</html>

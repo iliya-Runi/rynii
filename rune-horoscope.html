@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+     <!-- ===== FAVICON: РУНА АНСУЗ В КРУГЕ ===== -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='none' stroke='%23c9a050' stroke-width='3'/><text x='50' y='68' font-size='55' text-anchor='middle' fill='%23c9a050' font-weight='bold' font-family='serif'>ᚨ</text></svg>">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рунический гороскоп | Старший Футарк</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .horoscope-page {
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .horoscope-page h1 {
+            font-size: 36px;
+            color: #c9a050;
+            letter-spacing: 4px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .horoscope-page .subtitle {
+            text-align: center;
+            color: #b8ab9a;
+            font-size: 16px;
+            font-family: 'Georgia', serif;
+            margin-bottom: 35px;
+            line-height: 1.8;
+        }
+
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .tab-btn {
+            padding: 12px 28px;
+            background: rgba(201, 160, 80, 0.06);
+            border: 1px solid rgba(201, 160, 80, 0.15);
+            border-radius: 30px;
+            color: #b8ab9a;
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .tab-btn:hover {
+            background: rgba(201, 160, 80, 0.12);
+            border-color: rgba(201, 160, 80, 0.3);
+            color: #d4c9b8;
+        }
+
+        .tab-btn.active {
+            background: rgba(201, 160, 80, 0.15);
+            border-color: #c9a050;
+            color: #c9a050;
+            box-shadow: 0 0 30px rgba(201, 160, 80, 0.05);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .info-block {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            background: rgba(20, 20, 35, 0.4);
+            border: 1px solid rgba(201, 160, 80, 0.08);
+            border-radius: 16px;
+            padding: 25px 30px;
+            margin-bottom: 30px;
+        }
+
+        .info-block .info-item {
+            text-align: center;
+        }
+
+        .info-block .info-item .number {
+            font-size: 32px;
+            color: #c9a050;
+            font-weight: 700;
+            font-family: 'Cinzel', serif;
+            display: block;
+        }
+
+        .info-block .info-item .label {
+            color: #6a5f50;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .info-block .info-item .desc {
+            color: #b8ab9a;
+            font-size: 13px;
+            font-family: 'Georgia', serif;
+            margin-top: 4px;
+            display: block;
+        }
+
+        .horoscope-form {
+            background: rgba(20, 20, 35, 0.5);
+            border: 1px solid rgba(201, 160, 80, 0.08);
+            border-radius: 20px;
+            padding: 35px 30px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .horoscope-form label {
+            display: block;
+            color: #d4c9b8;
+            font-size: 18px;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .horoscope-form input {
+            padding: 14px 20px;
+            border: 2px solid rgba(201, 160, 80, 0.15);
+            border-radius: 12px;
+            background: rgba(10, 10, 20, 0.5);
+            color: #d4c9b8;
+            font-size: 18px;
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            width: 100%;
+            max-width: 280px;
+            transition: 0.3s;
+            outline: none;
+        }
+
+        .horoscope-form input:focus {
+            border-color: #c9a050;
+            box-shadow: 0 0 30px rgba(201, 160, 80, 0.05);
+        }
+
+        .horoscope-form button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 45px;
+            background: rgba(201, 160, 80, 0.1);
+            border: 1px solid rgba(201, 160, 80, 0.25);
+            border-radius: 30px;
+            color: #e8c85a;
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            letter-spacing: 3px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .horoscope-form button:hover {
+            background: rgba(201, 160, 80, 0.2);
+            border-color: #c9a050;
+            box-shadow: 0 0 30px rgba(201, 160, 80, 0.05);
+        }
+
+        .horoscope-result {
+            display: none;
+            background: rgba(20, 20, 35, 0.6);
+            border: 1px solid rgba(201, 160, 80, 0.12);
+            border-radius: 20px;
+            padding: 35px 30px;
+            margin-top: 20px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .horoscope-result.show {
+            display: block;
+        }
+
+        .horoscope-result .rune-display {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(201, 160, 80, 0.08);
+        }
+
+        .horoscope-result .rune-display .symbol {
+            font-size: 80px;
+            color: #c9a050;
+            display: block;
+            text-shadow: 0 0 40px rgba(201, 160, 80, 0.15);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .horoscope-result .rune-display .name {
+            font-size: 32px;
+            font-weight: 700;
+            color: #e8ddd0;
+            letter-spacing: 4px;
+            margin-top: 5px;
+        }
+
+        .horoscope-result .rune-display .name-en {
+            font-size: 16px;
+            color: #6a5f50;
+            letter-spacing: 3px;
+        }
+
+        .horoscope-result .rune-display .att {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 4px 20px;
+            border: 1px solid rgba(201, 160, 80, 0.2);
+            border-radius: 30px;
+            font-size: 12px;
+            color: #c9a050;
+            letter-spacing: 2px;
+        }
+
+        .horoscope-result .meaning-block {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(201, 160, 80, 0.08);
+        }
+
+        .horoscope-result .meaning-block h3 {
+            color: #c9a050;
+            font-size: 18px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .horoscope-result .meaning-block .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .horoscope-result .meaning-block .grid-2col .col {
+            background: rgba(20, 20, 35, 0.3);
+            border-radius: 12px;
+            padding: 15px 18px;
+            border: 1px solid rgba(201, 160, 80, 0.05);
+        }
+
+        .horoscope-result .meaning-block .grid-2col .col .label {
+            font-size: 11px;
+            color: #6a5f50;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .horoscope-result .meaning-block .grid-2col .col .text {
+            font-size: 14px;
+            color: #d4c9b8;
+            font-family: 'Georgia', serif;
+            line-height: 1.7;
+            margin-top: 4px;
+        }
+
+        .horoscope-result .meaning-block p {
+            color: #b8ab9a;
+            font-size: 15px;
+            line-height: 1.9;
+            font-family: 'Georgia', serif;
+        }
+
+        .horoscope-result .meaning-block .keywords {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+            justify-content: center;
+        }
+
+        .horoscope-result .meaning-block .keywords span {
+            background: rgba(201, 160, 80, 0.08);
+            border: 1px solid rgba(201, 160, 80, 0.1);
+            border-radius: 20px;
+            padding: 4px 16px;
+            font-size: 12px;
+            color: #c9a050;
+            letter-spacing: 1px;
+            font-family: 'Cinzel', serif;
+        }
+
+        .horoscope-result .link-to-rune {
+            display: inline-block;
+            margin-top: 20px;
+            color: #c9a050;
+            text-decoration: none;
+            border: 1px solid rgba(201, 160, 80, 0.2);
+            padding: 10px 30px;
+            border-radius: 30px;
+            transition: 0.3s;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        .horoscope-result .link-to-rune:hover {
+            background: rgba(201, 160, 80, 0.1);
+            border-color: #c9a050;
+        }
+
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .share-buttons a {
+            display: inline-block;
+            padding: 8px 20px;
+            border: 1px solid rgba(201, 160, 80, 0.15);
+            border-radius: 30px;
+            color: #b8ab9a;
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .share-buttons a:hover {
+            border-color: #c9a050;
+            color: #c9a050;
+        }
+
+        .month-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .month-card {
+            background: rgba(20, 20, 35, 0.4);
+            border: 1px solid rgba(201, 160, 80, 0.06);
+            border-radius: 14px;
+            padding: 18px 15px;
+            text-align: center;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .month-card:hover {
+            border-color: rgba(201, 160, 80, 0.2);
+            transform: translateY(-3px);
+            background: rgba(30, 30, 50, 0.5);
+        }
+
+        .month-card .rune-symbol {
+            font-size: 32px;
+            color: #c9a050;
+            display: block;
+        }
+
+        .month-card .rune-name {
+            font-size: 16px;
+            color: #e8ddd0;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        .month-card .rune-dates {
+            font-size: 12px;
+            color: #6a5f50;
+            margin-top: 3px;
+        }
+
+        .month-card .zodiac-sign {
+            font-size: 12px;
+            color: #b8ab9a;
+            margin-top: 4px;
+            font-family: 'Georgia', serif;
+            font-style: italic;
+        }
+
+        .year-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .year-card {
+            background: rgba(20, 20, 35, 0.3);
+            border: 1px solid rgba(201, 160, 80, 0.05);
+            border-radius: 12px;
+            padding: 14px 12px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .year-card:hover {
+            border-color: rgba(201, 160, 80, 0.15);
+            background: rgba(30, 30, 50, 0.4);
+        }
+
+        .year-card .year {
+            font-size: 14px;
+            color: #6a5f50;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .year-card .rune-symbol {
+            font-size: 28px;
+            color: #c9a050;
+            display: block;
+            margin: 4px 0;
+        }
+
+        .year-card .rune-name {
+            font-size: 14px;
+            color: #d4c9b8;
+        }
+
+        .zodiac-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .zodiac-card {
+            background: rgba(20, 20, 35, 0.4);
+            border: 1px solid rgba(201, 160, 80, 0.06);
+            border-radius: 14px;
+            padding: 18px 16px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .zodiac-card:hover {
+            border-color: rgba(201, 160, 80, 0.15);
+            background: rgba(30, 30, 50, 0.4);
+        }
+
+        .zodiac-card .zodiac-name {
+            font-size: 18px;
+            color: #e8ddd0;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .zodiac-card .zodiac-dates {
+            font-size: 12px;
+            color: #6a5f50;
+            margin: 3px 0 8px;
+        }
+
+        .zodiac-card .rune-pair {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 8px;
+        }
+
+        .zodiac-card .rune-pair .pair-item {
+            text-align: center;
+        }
+
+        .zodiac-card .rune-pair .pair-item .symbol {
+            font-size: 28px;
+            color: #c9a050;
+            display: block;
+        }
+
+        .zodiac-card .rune-pair .pair-item .name {
+            font-size: 13px;
+            color: #b8ab9a;
+        }
+
+        @media (max-width: 768px) {
+            .horoscope-page h1 {
+                font-size: 28px;
+            }
+            .horoscope-form {
+                padding: 25px 20px;
+            }
+            .horoscope-form input {
+                max-width: 100%;
+            }
+            .horoscope-result .rune-display .symbol {
+                font-size: 60px;
+            }
+            .horoscope-result .rune-display .name {
+                font-size: 26px;
+            }
+            .horoscope-result .meaning-block .grid-2col {
+                grid-template-columns: 1fr;
+            }
+            .info-block {
+                grid-template-columns: 1fr;
+                gap: 12px;
+                padding: 20px;
+            }
+            .tab-btn {
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+            .month-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .zodiac-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .horoscope-page h1 {
+                font-size: 22px;
+            }
+            .horoscope-result .rune-display .symbol {
+                font-size: 48px;
+            }
+            .horoscope-result .rune-display .name {
+                font-size: 22px;
+            }
+            .month-grid {
+                grid-template-columns: 1fr;
+            }
+            .zodiac-grid {
+                grid-template-columns: 1fr;
+            }
+            .tab-btn {
+                padding: 6px 12px;
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <header>
+            <div class="logo">
+                ᛝᚲᚷᛉᚠᚨᚱ
+                <span>Старший Футарк · 24 руны</span>
+            </div>
+            <nav>
+                <div class="nav-row nav-row-left">
+                    <a href="index.html" class="main-link">
+                        Главная
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚱ</span>
+                            <span class="highlight">Вернуться на главную</span><br>
+                            Главная страница с руническим кругом
+                        </span>
+                    </a>
+                    <a href="runes.html" class="runes-link">
+                        24 Руны Футарха
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚠ</span>
+                            <span class="highlight">Все 24 руны Футарка</span><br>
+                            Значения, символы и атты
+                        </span>
+                    </a>
+                    <a href="rune-horoscope.html" class="horoscope-link">
+                        Рунический гороскоп
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛃ</span>
+                            <span class="highlight">Рунический гороскоп</span><br>
+                            Предсказание по дате рождения
+                        </span>
+                    </a>
+                    <a href="rune-divination.html" class="divination-link">
+                        Гадание на рунах
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛉ</span>
+                            <span class="highlight">Онлайн-гадание на рунах</span><br>
+                            Брось руны и узнай судьбу
+                        </span>
+                    </a>
+                    <a href="gods.html" class="gods-link">
+                        Асы и Боги Скандинавии
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚨ</span>
+                            <span class="highlight">Скандинавские боги</span><br>
+                            Один, Тор, Локи, Фрейя и другие
+                        </span>
+                    </a>
+                    <a href="mifolgi.html" class="myth-link">
+                        Скандинавская мифология
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛝ</span>
+                            <span class="highlight">Подробная страница</span><br>
+                            Девять миров, руны и боги
+                        </span>
+                    </a>
+                    <a href="about.html" class="about-link">
+                        О создании сайте
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛉ</span>
+                            <span class="highlight">О проекте</span><br>
+                            Создатель, цели и поддержка
+                        </span>
+                    </a>
+                </div>
+
+                <div class="nav-row nav-row-right">
+                    <a href="feedback.html" class="feedback-link">
+                        📧 Обратная связь с поддержкой
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚨ</span>
+                            <span class="highlight">Написать разработчику сайта</span><br>
+                            Вопросы, идеи и поддержка
+                        </span>
+                    </a>
+                    <a href="consultation.html" class="support-link" style="color: #c9a050; border-bottom-color: rgba(201,160,80,0.3);">
+                        ✈️ Консультация рунолога
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚨ</span>
+                            <span class="highlight">Консультация рунолога</span><br>
+                            Помощь в вопросах жизни и судьбы
+                        </span>
+                    </a>
+                    <a href="support.html" class="support-link" style="color: #c9a050; border-bottom-color: rgba(201,160,80,0.3);">
+                        ₽ Финансовая поддержка сайта
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛉ</span>
+                            <span class="highlight">Поддержать создателя</span><br>
+                            Финансовая поддержка, информация об авторе
+                        </span>
+                    </a>
+                </div>
+            </nav>
+        </header>
+
+        <!-- ===== СТРАНИЦА ГОРОСКОПА ===== -->
+        <section class="horoscope-page">
+
+            <h1>✦ Рунический гороскоп ✦</h1>
+            <p class="subtitle">
+                В скандинавской традиции каждому дню рождения соответствует своя руна.<br>
+                Введи свою дату рождения — и узнай, какая руна ведёт тебя по жизни.
+            </p>
+
+            <div class="info-block">
+                <div class="info-item">
+                    <span class="number">24</span>
+                    <span class="label">Количество рун</span>
+                    <span class="desc">Старший Футарк</span>
+                </div>
+                <div class="info-item">
+                    <span class="number">✦</span>
+                    <span class="label">Твой путь</span>
+                    <span class="desc">Определяется днём рождения</span>
+                </div>
+                <div class="info-item">
+                    <span class="number">🌿</span>
+                    <span class="label">Начало года</span>
+                    <span class="desc">День весеннего равноденствия (23 марта)</span>
+                </div>
+            </div>
+
+            <div class="horoscope-form">
+                <label for="birthdate">📅 Введи дату рождения</label>
+                <input type="date" id="birthdate" max="2026-12-31" min="1900-01-01">
+                <br>
+                <button id="showHoroscope">✦ Узнать свою руну ✦</button>
+            </div>
+
+            <div class="horoscope-result" id="result">
+                <div class="rune-display">
+                    <span class="symbol" id="resultSymbol">ᚠ</span>
+                    <div class="name" id="resultName">Феху</div>
+                    <div class="name-en" id="resultNameEn">Fehu</div>
+                    <span class="att" id="resultAtt">Первый атт · Фрейр</span>
+                </div>
+
+                <div class="meaning-block">
+                    <h3>✦ Твой рунический портрет ✦</h3>
+                    <p id="resultMeaning">Текст значения...</p>
+
+                    <div class="grid-2col">
+                        <div class="col">
+                            <div class="label">✦ Сильные стороны</div>
+                            <div class="text" id="resultStrengths">Сильная сторона 1, Сильная сторона 2</div>
+                        </div>
+                        <div class="col">
+                            <div class="label">✦ Слабые стороны</div>
+                            <div class="text" id="resultWeaknesses">Слабая сторона 1, Слабая сторона 2</div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 15px; background: rgba(201, 160, 80, 0.05); border-radius: 12px; padding: 15px 20px; border-left: 3px solid #c9a050;">
+                        <div style="font-size: 11px; color: #6a5f50; letter-spacing: 2px; text-transform: uppercase;">✦ Совет на сегодня ✦</div>
+                        <div style="font-size: 14px; color: #d4c9b8; font-family: 'Georgia', serif; line-height: 1.7; margin-top: 4px;" id="resultAdvice">Текст совета...</div>
+                    </div>
+
+                    <div class="keywords" id="resultKeywords">
+                        <span>Ключевое слово 1</span>
+                        <span>Ключевое слово 2</span>
+                        <span>Ключевое слово 3</span>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 20px;">
+                    <a href="#" id="resultLink" class="link-to-rune">✦ Подробнее о руне ✦</a>
+                </div>
+
+                <div class="share-buttons">
+                    <a href="#" id="shareTelegram" target="_blank">✈️ Telegram</a>
+                    <a href="#" id="shareVK" target="_blank">📱 ВКонтакте</a>
+                    <a href="#" id="shareCopy">📋 Копировать</a>
+                </div>
+            </div>
+
+            <!-- ===== РУНА ДНЯ И РУНА НЕДЕЛИ ===== -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0 20px;">
+
+                <div style="background: rgba(20, 20, 35, 0.5); border: 1px solid rgba(201, 160, 80, 0.08); border-radius: 20px; padding: 30px 25px; text-align: center; transition: 0.3s;" 
+                     onmouseover="this.style.borderColor='rgba(201,160,80,0.2)'; this.style.boxShadow='0 10px 40px rgba(201,160,80,0.05)';" 
+                     onmouseout="this.style.borderColor='rgba(201,160,80,0.08)'; this.style.boxShadow='none';">
+                    <div style="color: #dabf9a; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 8px;">✦ Руна дня ✦</div>
+                    <div style="font-size: 56px; color: #c9a050; display: block; margin: 5px 0;" id="dailyRuneSymbol">ᚠ</div>
+                    <div style="font-size: 22px; color: #e8ddd0; letter-spacing: 2px; font-weight: 700;" id="dailyRuneName">Феху</div>
+                    <div style="font-size: 13px; color: #b8ab9a; font-family: 'Georgia', serif; line-height: 1.6; margin-top: 8px; max-width: 350px; margin-left: auto; margin-right: auto;" id="dailyRuneMeaning">Энергия созидания и изобилия. Время действовать!</div>
+                    <div style="margin-top: 12px; font-size: 11px; color: #6a5f50; letter-spacing: 1px;" id="dailyRuneDate">Сегодня</div>
+                    <a href="#" id="dailyRuneLink" 
+                       onclick="event.preventDefault(); const link = document.getElementById('dailyRuneLink'); if(link.dataset.href) window.location.href = link.dataset.href;"
+                       style="display: inline-block; margin-top: 12px; color: #c9a050; text-decoration: none; border: 1px solid rgba(201,160,80,0.15); padding: 6px 20px; border-radius: 20px; font-size: 12px; letter-spacing: 1px; transition: 0.3s;" 
+                       onmouseover="this.style.background='rgba(201,160,80,0.1)'; this.style.borderColor='#c9a050';" 
+                       onmouseout="this.style.background='transparent'; this.style.borderColor='rgba(201,160,80,0.15)';">
+                        ✦ Подробнее
+                    </a>
+                </div>
+
+                <div style="background: rgba(20, 20, 35, 0.5); border: 1px solid rgba(201, 160, 80, 0.08); border-radius: 20px; padding: 30px 25px; text-align: center; transition: 0.3s;"
+                     onmouseover="this.style.borderColor='rgba(201,160,80,0.2)'; this.style.boxShadow='0 10px 40px rgba(201,160,80,0.05)';" 
+                     onmouseout="this.style.borderColor='rgba(201,160,80,0.08)'; this.style.boxShadow='none';">
+                    <div style="color: #dabf9a; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 8px;">✦ Руна недели ✦</div>
+                    <div style="font-size: 56px; color: #c9a050; display: block; margin: 5px 0;" id="weekRuneSymbol">ᚢ</div>
+                    <div style="font-size: 22px; color: #e8ddd0; letter-spacing: 2px; font-weight: 700;" id="weekRuneName">Уруз</div>
+                    <div style="font-size: 13px; color: #b8ab9a; font-family: 'Georgia', serif; line-height: 1.6; margin-top: 8px; max-width: 350px; margin-left: auto; margin-right: auto;" id="weekRuneMeaning">Сила и выносливость. Энергия для больших свершений.</div>
+                    <div style="margin-top: 12px; font-size: 11px; color: #6a5f50; letter-spacing: 1px;" id="weekRuneDate">Эта неделя</div>
+                    <a href="#" id="weekRuneLink"
+                       onclick="event.preventDefault(); const link = document.getElementById('weekRuneLink'); if(link.dataset.href) window.location.href = link.dataset.href;"
+                       style="display: inline-block; margin-top: 12px; color: #c9a050; text-decoration: none; border: 1px solid rgba(201,160,80,0.15); padding: 6px 20px; border-radius: 20px; font-size: 12px; letter-spacing: 1px; transition: 0.3s;"
+                       onmouseover="this.style.background='rgba(201,160,80,0.1)'; this.style.borderColor='#c9a050';" 
+                       onmouseout="this.style.background='transparent'; this.style.borderColor='rgba(201,160,80,0.15)';">
+                        ✦ Подробнее
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- ===== ВКЛАДКИ: МЕСЯЦЫ, ГОДЫ, ЗОДИАК ===== -->
+            <div style="margin-top: 50px; border-top: 1px solid rgba(201, 160, 80, 0.1); padding-top: 40px;">
+                <h2 style="text-align: center; color: #c9a050; font-size: 28px; letter-spacing: 4px; margin-bottom: 25px;">
+                    ✦ Полный рунический календарь ✦
+                </h2>
+
+                <div class="tab-container">
+                    <button class="tab-btn active" data-tab="tab-months">📅 По месяцам</button>
+                    <button class="tab-btn" data-tab="tab-years">📆 По годам</button>
+                    <button class="tab-btn" data-tab="tab-zodiac">♈ По знакам Зодиака</button>
+                </div>
+
+                <div class="tab-content active" id="tab-months">
+                    <p style="text-align: center; color: #b8ab9a; font-size: 14px; font-family: 'Georgia', serif; margin-bottom: 20px;">
+                        Год начинается с дня весеннего равноденствия — 23 марта. <br>
+                        Каждой руне соответствует примерно 15 дней.
+                    </p>
+                    <div class="month-grid" id="monthGrid"></div>
+                </div>
+
+                <div class="tab-content" id="tab-years">
+                    <p style="text-align: center; color: #b8ab9a; font-size: 14px; font-family: 'Georgia', serif; margin-bottom: 20px;">
+                        Каждый год находится под покровительством определённой руны. <br>
+                        Цикл повторяется каждые 24 года.
+                    </p>
+                    <div class="year-grid" id="yearGrid"></div>
+                </div>
+
+                <div class="tab-content" id="tab-zodiac">
+                    <p style="text-align: center; color: #b8ab9a; font-size: 14px; font-family: 'Georgia', serif; margin-bottom: 20px;">
+                        Каждому знаку Зодиака соответствует по две руны.
+                    </p>
+                    <div class="zodiac-grid" id="zodiacGrid"></div>
+                </div>
+            </div>
+
+        </section>
+
+        <footer>
+            <p>ᛝᚲᚷᛉᚠᚨᚱ · 24 руны Старшего Футарка</p>
+            <p style="margin-top: 8px;">
+                <a href="index.html">Главная</a> ·
+                <a href="rune-horoscope.html">Гороскоп</a> ·
+                <a href="about.html">О сайте</a>
+            </p>
+            <p style="margin-top: 15px; font-size: 12px; opacity: 0.6;">
+                © 2026 · ᚲᛃᚨᛉᚷᚠᚱ Сделано с душой и мудростью
+            </p>
+        </footer>
+
+    </div>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // ============================================================
+        // ===== ДАННЫЕ ДЛЯ ГОРОСКОПА =====
+        // ============================================================
+
+        const monthRunes = [
+            { symbol: 'ᚠ', name: 'Феху', dates: '23 марта — 5 апреля', zodiac: 'Овен', desc: 'Активные, творческие, инициативные. Любят быть в движении.' },
+            { symbol: 'ᚢ', name: 'Уруз', dates: '6 апреля — 21 апреля', zodiac: 'Овен', desc: 'Сильные, целеустремлённые, готовые к самопожертвованию ради цели.' },
+            { symbol: 'ᚦ', name: 'Турисаз', dates: '22 апреля — 6 мая', zodiac: 'Телец', desc: 'Борцы, преодолевающие страхи, энергетически мощные.' },
+            { symbol: 'ᚨ', name: 'Ансуз', dates: '7 мая — 21 мая', zodiac: 'Телец', desc: 'Общительные, артистичные, творческие, любят порядок.' },
+            { symbol: 'ᚱ', name: 'Райдо', dates: '22 мая — 6 июня', zodiac: 'Близнецы', desc: 'Уравновешенные, контролирующие, стремящиеся к стабильности.' },
+            { symbol: 'ᚲ', name: 'Кеназ', dates: '7 июня — 22 июня', zodiac: 'Близнецы', desc: 'Творческие, с ясным умом, обладают экстрасенсорными способностями.' },
+            { symbol: 'ᚷ', name: 'Гебо', dates: '23 июня — 7 июля', zodiac: 'Рак', desc: 'Свободолюбивые, противоречивые, надёжные партнёры.' },
+            { symbol: 'ᚹ', name: 'Вуньо', dates: '8 июля — 23 июля', zodiac: 'Рак', desc: 'Светлые, радостные, могут исполнять желания.' },
+            { symbol: 'ᚺ', name: 'Хагалаз', dates: '24 июля — 8 августа', zodiac: 'Лев', desc: 'Сильные, разрушают старое, чтобы создать новое.' },
+            { symbol: 'ᚾ', name: 'Наутиз', dates: '9 августа — 23 августа', zodiac: 'Лев', desc: 'Находят путь через препятствия, сосредоточены на цели.' },
+            { symbol: 'ᛁ', name: 'Иса', dates: '24 августа — 8 сентября', zodiac: 'Дева', desc: 'Ответственные, неторопливые, вдумчивые.' },
+            { symbol: 'ᛃ', name: 'Йера', dates: '9 сентября — 23 сентября', zodiac: 'Дева', desc: 'Терпеливые, последовательные, знают цену времени.' },
+            { symbol: 'ᛇ', name: 'Эйваз', dates: '24 сентября — 8 октября', zodiac: 'Весы', desc: 'Настойчивые, выносливые, честные с собой и другими.' },
+            { symbol: 'ᛈ', name: 'Перто', dates: '9 октября — 23 октября', zodiac: 'Весы', desc: 'Скрытные, принципиальные, тяготеют к мистике.' },
+            { symbol: 'ᛉ', name: 'Альгиз', dates: '24 октября — 7 ноября', zodiac: 'Скорпион', desc: 'Жизнеутверждающие, преодолевают любые трудности.' },
+            { symbol: 'ᛋ', name: 'Соулу', dates: '8 ноября — 23 ноября', zodiac: 'Скорпион', desc: 'Наполнены внутренним светом, жизнеспособны.' },
+            { symbol: 'ᛏ', name: 'Тейваз', dates: '24 ноября — 7 декабря', zodiac: 'Стрелец', desc: 'Мужественные, готовые к борьбе за идеалы.' },
+            { symbol: 'ᛒ', name: 'Беркана', dates: '8 декабря — 22 декабря', zodiac: 'Стрелец', desc: 'Стремятся к созиданию, открытиям и развитию.' },
+            { symbol: 'ᛖ', name: 'Эхваз', dates: '23 декабря — 6 января', zodiac: 'Козерог', desc: 'В постоянном развитии, отличные наставники.' },
+            { symbol: 'ᛗ', name: 'Манназ', dates: '7 января — 21 января', zodiac: 'Козерог', desc: 'Скромные, целостные, не привыкли привлекать внимание.' },
+            { symbol: 'ᛚ', name: 'Лагуз', dates: '22 января — 5 февраля', zodiac: 'Водолей', desc: 'Непредсказуемые, с развитой интуицией.' },
+            { symbol: 'ᛝ', name: 'Ингуз', dates: '6 февраля — 20 февраля', zodiac: 'Водолей', desc: 'Творческие, ведут за собой массы, меняют настроение.' },
+            { symbol: 'ᛟ', name: 'Отал', dates: '21 февраля — 5 марта', zodiac: 'Рыбы', desc: 'Имеют огромный потенциал для раскрытия талантов.' },
+            { symbol: 'ᛞ', name: 'Дагаз', dates: '6 марта — 22 марта', zodiac: 'Рыбы', desc: 'Переменчивые, непредсказуемые, идут к свету.' }
+        ];
+
+        const zodiacRunes = [
+            { sign: '♈ Овен', dates: '21 марта — 19 апреля', runes: ['ᚠ', 'ᚢ'], names: ['Феху', 'Уруз'] },
+            { sign: '♉ Телец', dates: '20 апреля — 20 мая', runes: ['ᚦ', 'ᚨ'], names: ['Турисаз', 'Ансуз'] },
+            { sign: '♊ Близнецы', dates: '21 мая — 20 июня', runes: ['ᚱ', 'ᚲ'], names: ['Райдо', 'Кеназ'] },
+            { sign: '♋ Рак', dates: '21 июня — 22 июля', runes: ['ᚷ', 'ᚹ'], names: ['Гебо', 'Вуньо'] },
+            { sign: '♌ Лев', dates: '23 июля — 22 августа', runes: ['ᚺ', 'ᚾ'], names: ['Хагалаз', 'Наутиз'] },
+            { sign: '♍ Дева', dates: '23 августа — 22 сентября', runes: ['ᛁ', 'ᛃ'], names: ['Иса', 'Йера'] },
+            { sign: '♎ Весы', dates: '23 сентября — 22 октября', runes: ['ᛇ', 'ᛈ'], names: ['Эйваз', 'Перто'] },
+            { sign: '♏ Скорпион', dates: '23 октября — 21 ноября', runes: ['ᛉ', 'ᛋ'], names: ['Альгиз', 'Соулу'] },
+            { sign: '♐ Стрелец', dates: '22 ноября — 21 декабря', runes: ['ᛏ', 'ᛒ'], names: ['Тейваз', 'Беркана'] },
+            { sign: '♑ Козерог', dates: '22 декабря — 19 января', runes: ['ᛖ', 'ᛗ'], names: ['Эхваз', 'Манназ'] },
+            { sign: '♒ Водолей', dates: '20 января — 18 февраля', runes: ['ᛚ', 'ᛝ'], names: ['Лагуз', 'Ингуз'] },
+            { sign: '♓ Рыбы', dates: '19 февраля — 20 марта', runes: ['ᛟ', 'ᛞ'], names: ['Отал', 'Дагаз'] }
+        ];
+
+        const yearRunes = [];
+        const startYear = 2020;
+        const runeSymbols = [
+            'ᚠ', 'ᚢ', 'ᚦ', 'ᚨ', 'ᚱ', 'ᚲ', 'ᚷ', 'ᚹ',
+            'ᚺ', 'ᚾ', 'ᛁ', 'ᛃ', 'ᛇ', 'ᛈ', 'ᛉ', 'ᛋ',
+            'ᛏ', 'ᛒ', 'ᛖ', 'ᛗ', 'ᛚ', 'ᛝ', 'ᛟ', 'ᛞ'
+        ];
+        const runeNames = [
+            'Феху', 'Уруз', 'Турисаз', 'Ансуз', 'Райдо', 'Кеназ', 'Гебо', 'Вуньо',
+            'Хагалаз', 'Наутиз', 'Иса', 'Йера', 'Эйваз', 'Перто', 'Альгиз', 'Соулу',
+            'Тейваз', 'Беркана', 'Эхваз', 'Манназ', 'Лагуз', 'Ингуз', 'Отал', 'Дагаз'
+        ];
+
+        for (let i = 0; i < 48; i++) {
+            const year = startYear + i;
+            const index = i % 24;
+            yearRunes.push({
+                year: year,
+                symbol: runeSymbols[index],
+                name: runeNames[index]
+            });
+        }
+
+        const runeData = {
+            'ᚠ': { name: 'Феху', nameEn: 'Fehu', att: 'Первый атт · Фрейр', meaning: 'Феху — руна богатства и изобилия. Она наделяет человека энергией созидания...', strengths: 'Творческий потенциал, предприимчивость, щедрость', weaknesses: 'Склонность к расточительству, зависимость от материального', advice: 'Сосредоточься на том, что действительно важно. Не разменивайся на мелочи.', keywords: ['Богатство', 'Созидание', 'Изобилие', 'Успех'], link: 'rune-fechu.html' },
+            'ᚢ': { name: 'Уруз', nameEn: 'Uruz', att: 'Первый атт · Фрейр', meaning: 'Уруз — руна первобытной силы и выносливости...', strengths: 'Сила воли, выносливость, энергия', weaknesses: 'Упрямство, импульсивность, склонность к доминированию', advice: 'Твоя сила велика, но помни, что её нужно направлять с умом.', keywords: ['Сила', 'Мощь', 'Стойкость', 'Преодоление'], link: 'rune-uruz.html' },
+            'ᚦ': { name: 'Турисаз', nameEn: 'Thurisaz', att: 'Первый атт · Фрейр', meaning: 'Турисаз — руна защиты и преодоления препятствий...', strengths: 'Защита, сила, решительность', weaknesses: 'Агрессия, излишняя строгость, негибкость', advice: 'Защищай себя и своё, но помни, что излишняя агрессия может разрушить мосты.', keywords: ['Защита', 'Препятствие', 'Молот Тора', 'Отражение негатива'], link: 'rune-thurisaz.html' },
+            'ᚨ': { name: 'Ансуз', nameEn: 'Ansuz', att: 'Первый атт · Фрейр', meaning: 'Ансуз — руна мудрости и знания...', strengths: 'Мудрость, красноречие, умение убеждать', weaknesses: 'Склонность к поучениям, излишняя болтливость', advice: 'Твоё слово — твоя сила. Используй его с умом.', keywords: ['Мудрость', 'Знание', 'Вдохновение', 'Ясность ума'], link: 'rune-ansuz.html' },
+            'ᚱ': { name: 'Райдо', nameEn: 'Raido', att: 'Первый атт · Фрейр', meaning: 'Райдо — руна пути и путешествий...', strengths: 'Адаптивность, любовь к путешествиям, оптимизм', weaknesses: 'Неусидчивость, поверхностность, склонность к авантюрам', advice: 'Путь будет открыт, если ты готов идти.', keywords: ['Путь', 'Путешествие', 'Перемены', 'Направление'], link: 'rune-raido.html' },
+            'ᚲ': { name: 'Кеназ', nameEn: 'Kenaz', att: 'Первый атт · Фрейр', meaning: 'Кеназ — руна огня и творчества...', strengths: 'Творчество, вдохновение, внутренний свет', weaknesses: 'Эмоциональная нестабильность, выгорание', advice: 'Зажги свой внутренний огонь, но не сгори в нём.', keywords: ['Факел', 'Творчество', 'Огонь', 'Вдохновение'], link: 'rune-kenaz.html' },
+            'ᚷ': { name: 'Гебо', nameEn: 'Gebo', att: 'Первый атт · Фрейр', meaning: 'Гебо — руна дара и партнёрства...', strengths: 'Гармония, умение договариваться, дипломатия', weaknesses: 'Склонность к зависимостям, страх одиночества', advice: 'Отношения — твоя главная сила. Но помни, что любой дар требует равновесия.', keywords: ['Дар', 'Партнёрство', 'Равновесие', 'Союз'], link: 'rune-gebo.html' },
+            'ᚹ': { name: 'Вуньо', nameEn: 'Wunjo', att: 'Первый атт · Фрейр', meaning: 'Вуньо — руна радости и успеха...', strengths: 'Оптимизм, радость, удача', weaknesses: 'Поверхностность, игнорирование проблем', advice: 'Твоя радость притягивает успех. Сегодня раздели свою улыбку с миром.', keywords: ['Радость', 'Успех', 'Свет', 'Исполнение'], link: 'rune-wunjo.html' },
+            'ᚺ': { name: 'Хагалаз', nameEn: 'Hagalaz', att: 'Второй атт · Хеймдалль', meaning: 'Хагалаз — руна разрушения и очищения...', strengths: 'Умение переживать кризисы, внутренняя сила', weaknesses: 'Тяжело переживает потери, склонность к саморазрушению', advice: 'Если в твоей жизни наступил кризис — помни, это начало нового цикла.', keywords: ['Град', 'Разрушение', 'Очищение', 'Перемены'], link: 'rune-hagalaz.html' },
+            'ᚾ': { name: 'Наутиз', nameEn: 'Nauthiz', att: 'Второй атт · Хеймдалль', meaning: 'Наутиз — руна нужды и терпения...', strengths: 'Стойкость, терпение, умение ждать', weaknesses: 'Склонность к страданиям, пессимизм', advice: 'Трудности — не наказание, а возможность стать сильнее.', keywords: ['Нужда', 'Препятствие', 'Терпение', 'Внутренняя сила'], link: 'rune-nauthiz.html' },
+            'ᛁ': { name: 'Иса', nameEn: 'Isa', att: 'Второй атт · Хеймдалль', meaning: 'Иса — руна льда и остановки...', strengths: 'Спокойствие, терпение, внутренняя стабильность', weaknesses: 'Склонность к зацикленности, застой в развитии', advice: 'Время остановиться и перевести дух. Не пытайся форсировать события.', keywords: ['Лёд', 'Заморозка', 'Остановка', 'Сохранение'], link: 'rune-isa.html' },
+            'ᛃ': { name: 'Йера', nameEn: 'Jera', att: 'Второй атт · Хеймдалль', meaning: 'Йера — руна урожая и завершения циклов...', strengths: 'Терпеливость, мудрость, справедливость', weaknesses: 'Медлительность, склонность к пассивности', advice: 'Всему своё время. Если ты посеял — жди урожая.', keywords: ['Урожай', 'Год', 'Цикл', 'Справедливость'], link: 'rune-jera.html' },
+            'ᛇ': { name: 'Эйваз', nameEn: 'Eihwaz', att: 'Второй атт · Хеймдалль', meaning: 'Эйваз — руна тиса и защиты...', strengths: 'Надёжность, выносливость, защита', weaknesses: 'Закрытость, склонность к одиночеству', advice: 'Ты — опора для других, но не забывай и о себе.', keywords: ['Тис', 'Защита', 'Выносливость', 'Связь миров'], link: 'rune-eihwaz.html' },
+            'ᛈ': { name: 'Перто', nameEn: 'Perthro', att: 'Второй атт · Хеймдалль', meaning: 'Перто — руна тайны и судьбы...', strengths: 'Интуиция, доверие жизни, мудрость', weaknesses: 'Склонность к мистике, излишняя пассивность', advice: 'Доверься своей интуиции — она сегодня твой лучший проводник.', keywords: ['Тайна', 'Жребий', 'Судьба', 'Интуиция'], link: 'rune-perthro.html' },
+            'ᛉ': { name: 'Альгиз', nameEn: 'Algiz', att: 'Второй атт · Хеймдалль', meaning: 'Альгиз — руна защиты и интуиции...', strengths: 'Защита, интуиция, чуткость', weaknesses: 'Тревожность, излишняя подозрительность', advice: 'Твоя интуиция сейчас сильна. Доверься ей, но не позволяй тревоге овладеть тобой.', keywords: ['Лось', 'Защита', 'Интуиция', 'Охрана'], link: 'rune-algiz.html' },
+            'ᛋ': { name: 'Соулу', nameEn: 'Sowilo', att: 'Второй атт · Хеймдалль', meaning: 'Соулу — руна солнца и победы...', strengths: 'Уверенность, лидерство, энергия', weaknesses: 'Гордыня, излишняя самоуверенность', advice: 'Сегодня ты можешь свернуть горы! Твоя энергия на подъёме.', keywords: ['Солнце', 'Победа', 'Целостность', 'Энергия'], link: 'rune-sowilo.html' },
+            'ᛏ': { name: 'Тейваз', nameEn: 'Tiwaz', att: 'Третий атт · Тюр', meaning: 'Тейваз — руна чести и справедливости...', strengths: 'Честь, справедливость, благородство', weaknesses: 'Рискованность, склонность к жертвенности', advice: 'Сегодня твоя честь будет подвергнута испытанию. Останься верен своим принципам.', keywords: ['Тюр', 'Честь', 'Победа', 'Справедливость'], link: 'rune-tiwaz.html' },
+            'ᛒ': { name: 'Беркана', nameEn: 'Berkana', att: 'Третий атт · Тюр', meaning: 'Беркана — руна роста и заботы...', strengths: 'Заботливость, чуткость, созидание', weaknesses: 'Склонность к гиперопеке, потеря себя', advice: 'Ты можешь дать миру много тепла и заботы. Но не забывай и о себе.', keywords: ['Берёза', 'Рост', 'Забота', 'Семья'], link: 'rune-berkana.html' },
+            'ᛖ': { name: 'Эхваз', nameEn: 'Ehwaz', att: 'Третий атт · Тюр', meaning: 'Эхваз — руна движения и доверия...', strengths: 'Верность, доверие, гармония', weaknesses: 'Излишняя зависимость от других, доверчивость', advice: 'Сейчас время доверять и двигаться вперёд.', keywords: ['Конь', 'Движение', 'Доверие', 'Гармония'], link: 'rune-ehwaz.html' },
+            'ᛗ': { name: 'Манназ', nameEn: 'Mannaz', att: 'Третий атт · Тюр', meaning: 'Манназ — руна человека и общества...', strengths: 'Коммуникабельность, дипломатия, командный дух', weaknesses: 'Склонность к конформизму, потеря индивидуальности', advice: 'Твоя сила — в людях. Сегодня налаживай связи, строй мосты.', keywords: ['Человек', 'Общество', 'Разум', 'Взаимодействие'], link: 'rune-mannaz.html' },
+            'ᛚ': { name: 'Лагуз', nameEn: 'Laguz', att: 'Третий атт · Тюр', meaning: 'Лагуз — руна воды и интуиции...', strengths: 'Интуиция, адаптивность, чувствительность', weaknesses: 'Эмоциональная неустойчивость, склонность к меланхолии', advice: 'Доверься потоку жизни. Твоя интуиция подскажет правильное направление.', keywords: ['Вода', 'Интуиция', 'Поток', 'Эмоции'], link: 'rune-laguz.html' },
+            'ᛝ': { name: 'Ингуз', nameEn: 'Inguz', att: 'Третий атт · Тюр', meaning: 'Ингуз — руна начала и потенциала...', strengths: 'Инициатива, вера в будущее, энергия', weaknesses: 'Неусидчивость, склонность бросать начатое', advice: 'Сегодня идеальный день для нового начала. Отпусти прошлое и с верой шагни в будущее.', keywords: ['Инг', 'Начало', 'Потенциал', 'Плодородие'], link: 'rune-inguz.html' },
+            'ᛟ': { name: 'Отал', nameEn: 'Othala', att: 'Третий атт · Тюр', meaning: 'Отал — руна родины и наследия...', strengths: 'Связь с родом, мудрость традиций, ответственность', weaknesses: 'Консерватизм, сопротивление новому', advice: 'Обратись к своим корням. Воспоминания и опыт предков помогут тебе найти верное решение.', keywords: ['Родина', 'Наследие', 'Дом', 'Корни'], link: 'rune-othala.html' },
+            'ᛞ': { name: 'Дагаз', nameEn: 'Dagaz', att: 'Третий атт · Тюр', meaning: 'Дагаз — руна рассвета и трансформации...', strengths: 'Вера, трансформация, вдохновение', weaknesses: 'Импульсивность, нетерпеливость', advice: 'Рассвет уже близко. Даже если сейчас темно — ты на пороге великого прорыва.', keywords: ['Рассвет', 'Прорыв', 'Трансформация', 'Новое начало'], link: 'rune-dagaz.html' }
+        };
+
+        function getRuneForDate(date) {
+            const start = new Date(1900, 2, 23);
+            const diff = Math.floor((date - start) / (1000 * 60 * 60 * 24));
+            const index = diff % 24;
+            return runeSymbols[index];
+        }
+
+        const input = document.getElementById('birthdate');
+        const button = document.getElementById('showHoroscope');
+        const resultDiv = document.getElementById('result');
+
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        input.value = `${year}-${month}-${day}`;
+
+        button.addEventListener('click', function() {
+            const date = new Date(input.value);
+            if (isNaN(date.getTime())) {
+                alert('Пожалуйста, введите корректную дату!');
+                return;
+            }
+
+            const symbol = getRuneForDate(date);
+            const data = runeData[symbol];
+
+            if (!data) {
+                alert('Ошибка: данные для руны не найдены.');
+                return;
+            }
+
+            document.getElementById('resultSymbol').textContent = symbol;
+            document.getElementById('resultName').textContent = data.name;
+            document.getElementById('resultNameEn').textContent = data.nameEn;
+            document.getElementById('resultAtt').textContent = data.att;
+            document.getElementById('resultMeaning').textContent = data.meaning;
+            document.getElementById('resultStrengths').textContent = data.strengths;
+            document.getElementById('resultWeaknesses').textContent = data.weaknesses;
+            document.getElementById('resultAdvice').textContent = data.advice;
+
+            const keywordsContainer = document.getElementById('resultKeywords');
+            keywordsContainer.innerHTML = '';
+            data.keywords.forEach(keyword => {
+                const span = document.createElement('span');
+                span.textContent = keyword;
+                keywordsContainer.appendChild(span);
+            });
+
+            document.getElementById('resultLink').href = data.link;
+
+            const shareText = `✨ Моя руна по гороскопу — ${data.name} (${symbol}) ✨\n\n${data.meaning.slice(0, 150)}...\n\nУзнай свою руну на сайте: https://igdrasil-futarx.github.io/`;
+            document.getElementById('shareTelegram').href = `https://t.me/share/url?url=https://igdrasil-futarx.github.io/&text=${encodeURIComponent(shareText)}`;
+            document.getElementById('shareVK').href = `https://vk.com/share.php?url=https://igdrasil-futarx.github.io/&title=Рунический гороскоп&description=${encodeURIComponent(shareText)}`;
+
+            document.getElementById('shareCopy').addEventListener('click', function(e) {
+                e.preventDefault();
+                navigator.clipboard.writeText(shareText).then(() => {
+                    this.textContent = '✅ Скопировано!';
+                    setTimeout(() => { this.textContent = '📋 Копировать'; }, 2000);
+                });
+            });
+
+            resultDiv.classList.add('show');
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                button.click();
+            }, 400);
+        });
+
+        function updateDailyAndWeekRunes() {
+            const now = new Date();
+
+            const startOfYear = new Date(now.getFullYear(), 0, 0);
+            const diffDay = (now - startOfYear) + (startOfYear.getTimezoneOffset() - now.getTimezoneOffset()) * 60000;
+            const dayOfYear = Math.floor(diffDay / (1000 * 60 * 60 * 24));
+            const dailyIndex = dayOfYear % 24;
+            const dailySymbol = runeSymbols[dailyIndex];
+            const dailyData = runeData[dailySymbol];
+
+            if (dailyData) {
+                document.getElementById('dailyRuneSymbol').textContent = dailySymbol;
+                document.getElementById('dailyRuneName').textContent = dailyData.name;
+                document.getElementById('dailyRuneMeaning').textContent = dailyData.meaning.split('.')[0] + '.';
+                document.getElementById('dailyRuneDate').textContent = `Сегодня, ${now.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' })}`;
+                document.getElementById('dailyRuneLink').dataset.href = dailyData.link;
+            }
+
+            const firstDayOfYear = new Date(now.getFullYear(), 0, 1);
+            const daysSinceStart = Math.floor((now - firstDayOfYear) / (1000 * 60 * 60 * 24));
+            const weekNumber = Math.floor(daysSinceStart / 7);
+            const weekIndex = weekNumber % 24;
+            const weekSymbol = runeSymbols[weekIndex];
+            const weekData = runeData[weekSymbol];
+
+            if (weekData) {
+                document.getElementById('weekRuneSymbol').textContent = weekSymbol;
+                document.getElementById('weekRuneName').textContent = weekData.name;
+                document.getElementById('weekRuneMeaning').textContent = weekData.meaning.split('.')[0] + '.';
+                document.getElementById('weekRuneDate').textContent = `${weekNumber + 1}-я неделя ${now.getFullYear()} года`;
+                document.getElementById('weekRuneLink').dataset.href = weekData.link;
+            }
+        }
+
+        updateDailyAndWeekRunes();
+
+        const monthGrid = document.getElementById('monthGrid');
+        monthRunes.forEach(rune => {
+            const card = document.createElement('div');
+            card.className = 'month-card';
+            card.innerHTML = `
+                <span class="rune-symbol">${rune.symbol}</span>
+                <div class="rune-name">${rune.name}</div>
+                <div class="rune-dates">${rune.dates}</div>
+                <div class="zodiac-sign">♈ ${rune.zodiac}</div>
+            `;
+            card.addEventListener('click', function() {
+                const data = runeData[rune.symbol];
+                if (data) {
+                    input.value = '';
+                    resultDiv.classList.remove('show');
+                    setTimeout(() => {
+                        document.getElementById('resultSymbol').textContent = rune.symbol;
+                        document.getElementById('resultName').textContent = data.name;
+                        document.getElementById('resultNameEn').textContent = data.nameEn;
+                        document.getElementById('resultAtt').textContent = data.att;
+                        document.getElementById('resultMeaning').textContent = data.meaning;
+                        document.getElementById('resultStrengths').textContent = data.strengths;
+                        document.getElementById('resultWeaknesses').textContent = data.weaknesses;
+                        document.getElementById('resultAdvice').textContent = data.advice;
+                        const kw = document.getElementById('resultKeywords');
+                        kw.innerHTML = '';
+                        data.keywords.forEach(k => {
+                            const span = document.createElement('span');
+                            span.textContent = k;
+                            kw.appendChild(span);
+                        });
+                        document.getElementById('resultLink').href = data.link;
+                        resultDiv.classList.add('show');
+                        resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 200);
+                }
+            });
+            monthGrid.appendChild(card);
+        });
+
+        const yearGrid = document.getElementById('yearGrid');
+        yearRunes.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'year-card';
+            card.innerHTML = `
+                <div class="year">${item.year}</div>
+                <span class="rune-symbol">${item.symbol}</span>
+                <div class="rune-name">${item.name}</div>
+            `;
+            card.addEventListener('click', function() {
+                const data = runeData[item.symbol];
+                if (data) {
+                    input.value = '';
+                    resultDiv.classList.remove('show');
+                    setTimeout(() => {
+                        document.getElementById('resultSymbol').textContent = item.symbol;
+                        document.getElementById('resultName').textContent = data.name;
+                        document.getElementById('resultNameEn').textContent = data.nameEn;
+                        document.getElementById('resultAtt').textContent = data.att;
+                        document.getElementById('resultMeaning').textContent = data.meaning;
+                        document.getElementById('resultStrengths').textContent = data.strengths;
+                        document.getElementById('resultWeaknesses').textContent = data.weaknesses;
+                        document.getElementById('resultAdvice').textContent = data.advice;
+                        const kw = document.getElementById('resultKeywords');
+                        kw.innerHTML = '';
+                        data.keywords.forEach(k => {
+                            const span = document.createElement('span');
+                            span.textContent = k;
+                            kw.appendChild(span);
+                        });
+                        document.getElementById('resultLink').href = data.link;
+                        resultDiv.classList.add('show');
+                        resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 200);
+                }
+            });
+            yearGrid.appendChild(card);
+        });
+
+        const zodiacGrid = document.getElementById('zodiacGrid');
+        zodiacRunes.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'zodiac-card';
+            card.innerHTML = `
+                <div class="zodiac-name">${item.sign}</div>
+                <div class="zodiac-dates">${item.dates}</div>
+                <div class="rune-pair">
+                    <div class="pair-item">
+                        <span class="symbol">${item.runes[0]}</span>
+                        <div class="name">${item.names[0]}</div>
+                    </div>
+                    <div class="pair-item">
+                        <span class="symbol">${item.runes[1]}</span>
+                        <div class="name">${item.names[1]}</div>
+                    </div>
+                </div>
+            `;
+            zodiacGrid.appendChild(card);
+        });
+
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = {
+            'tab-months': document.getElementById('tab-months'),
+            'tab-years': document.getElementById('tab-years'),
+            'tab-zodiac': document.getElementById('tab-zodiac')
+        };
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                Object.keys(tabContents).forEach(key => {
+                    tabContents[key].classList.remove('active');
+                });
+
+                const target = this.dataset.tab;
+                if (tabContents[target]) {
+                    tabContents[target].classList.add('active');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

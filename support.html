@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!-- ===== FAVICON: РУНА АНСУЗ В КРУГЕ ===== -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='none' stroke='%23c9a050' stroke-width='3'/><text x='50' y='68' font-size='55' text-anchor='middle' fill='%23c9a050' font-weight='bold' font-family='serif'>ᚨ</text></svg>">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поддержать создателя | Руны Старшего Футарка</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .support-page {
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .support-page h1 {
+            font-size: 38px;
+            color: #c9a050;
+            letter-spacing: 4px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .support-page .subtitle {
+            text-align: center;
+            color: #b8ab9a;
+            font-size: 16px;
+            font-family: 'Georgia', serif;
+            margin-bottom: 35px;
+            line-height: 1.8;
+        }
+
+        .support-hero {
+            background: rgba(20, 20, 35, 0.5);
+            border: 1px solid rgba(201, 160, 80, 0.08);
+            border-radius: 20px;
+            padding: 40px 35px;
+            margin-bottom: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .support-hero .left .rune-big {
+            font-size: 72px;
+            color: #c9a050;
+            display: block;
+            text-shadow: 0 0 40px rgba(201, 160, 80, 0.15);
+            margin-bottom: 10px;
+        }
+
+        .support-hero .left h2 {
+            font-size: 28px;
+            color: #e8ddd0;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .support-hero .left p {
+            color: #b8ab9a;
+            font-size: 16px;
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+        }
+
+        .support-hero .right {
+            text-align: center;
+            background: rgba(201, 160, 80, 0.05);
+            border-radius: 16px;
+            padding: 30px 20px;
+            border: 1px solid rgba(201, 160, 80, 0.1);
+        }
+
+        .support-hero .right .heart {
+            font-size: 48px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .support-hero .right .text {
+            color: #b8ab9a;
+            font-size: 14px;
+            font-family: 'Georgia', serif;
+            line-height: 1.7;
+        }
+
+        .donate-block {
+            background: rgba(20, 20, 35, 0.4);
+            border: 1px solid rgba(201, 160, 80, 0.08);
+            border-radius: 20px;
+            padding: 35px 30px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .donate-block h2 {
+            color: #c9a050;
+            font-size: 26px;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .donate-block p {
+            color: #b8ab9a;
+            font-size: 15px;
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto 25px;
+        }
+
+        .donate-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .donate-buttons a {
+            display: inline-block;
+            padding: 14px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 15px;
+            letter-spacing: 2px;
+            transition: 0.3s;
+            border: 1px solid rgba(201, 160, 80, 0.2);
+            background: rgba(201, 160, 80, 0.08);
+            color: #e8c85a;
+        }
+
+        .donate-buttons a:hover {
+            background: rgba(201, 160, 80, 0.2);
+            border-color: #c9a050;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(201, 160, 80, 0.1);
+        }
+
+        .donate-buttons a .icon {
+            margin-right: 8px;
+        }
+
+        .creator-block {
+            background: rgba(20, 20, 35, 0.3);
+            border: 1px solid rgba(201, 160, 80, 0.06);
+            border-radius: 20px;
+            padding: 35px 30px;
+            margin-bottom: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .creator-block h2 {
+            color: #c9a050;
+            font-size: 24px;
+            letter-spacing: 2px;
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .creator-block .text p {
+            color: #b8ab9a;
+            font-size: 15px;
+            font-family: 'Georgia', serif;
+            line-height: 1.9;
+            margin-bottom: 12px;
+        }
+
+        .creator-block .text .highlight {
+            color: #c9a050;
+            font-weight: 700;
+        }
+
+        .creator-block .badges {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .creator-block .badges .badge {
+            background: rgba(201, 160, 80, 0.06);
+            border: 1px solid rgba(201, 160, 80, 0.1);
+            border-radius: 12px;
+            padding: 12px 18px;
+            text-align: center;
+            color: #b8ab9a;
+            font-size: 14px;
+            font-family: 'Georgia', serif;
+        }
+
+        .creator-block .badges .badge .num {
+            color: #c9a050;
+            font-weight: 700;
+            font-size: 18px;
+            font-family: 'Cinzel', serif;
+        }
+
+        .social-block {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 30px;
+            background: rgba(20, 20, 35, 0.3);
+            border: 1px solid rgba(201, 160, 80, 0.06);
+            border-radius: 20px;
+        }
+
+        .social-block h3 {
+            color: #c9a050;
+            font-size: 20px;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .social-block p {
+            color: #b8ab9a;
+            font-size: 14px;
+            font-family: 'Georgia', serif;
+            margin-bottom: 18px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .social-links .tg {
+            background: #0088cc;
+            color: white;
+            border: 1px solid #0088cc;
+        }
+
+        .social-links .tg:hover {
+            background: #006699;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 136, 204, 0.3);
+        }
+
+        .social-links .yt {
+            background: #ff0000;
+            color: white;
+            border: 1px solid #ff0000;
+        }
+
+        .social-links .yt:hover {
+            background: #cc0000;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3);
+        }
+
+        .rune-signature {
+            text-align: center;
+            font-size: 28px;
+            letter-spacing: 8px;
+            color: #c9a050;
+            opacity: 0.3;
+            margin: 20px 0 10px;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding: 30px 0 20px;
+            border-top: 1px solid rgba(201, 160, 80, 0.15);
+            text-align: center;
+            color: #6a5f50;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        footer a {
+            color: #8a7a6a;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        footer a:hover {
+            color: #c9a050;
+        }
+
+        @media (max-width: 992px) {
+            .support-hero {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            .creator-block {
+                grid-template-columns: 1fr;
+            }
+            .creator-block .badges {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .creator-block .badges .badge {
+                flex: 1;
+                min-width: 150px;
+            }
+            .donate-buttons a {
+                padding: 12px 25px;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .support-page h1 {
+                font-size: 28px;
+            }
+            .support-hero {
+                padding: 25px 20px;
+            }
+            .support-hero .left .rune-big {
+                font-size: 48px;
+            }
+            .support-hero .left h2 {
+                font-size: 22px;
+            }
+            .donate-block {
+                padding: 25px 20px;
+            }
+            .donate-block h2 {
+                font-size: 22px;
+            }
+            .creator-block {
+                padding: 25px 20px;
+            }
+            .creator-block h2 {
+                font-size: 20px;
+            }
+            .social-links a {
+                padding: 10px 20px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .support-page h1 {
+                font-size: 22px;
+            }
+            .donate-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .donate-buttons a {
+                width: 100%;
+                text-align: center;
+                padding: 12px 20px;
+                font-size: 13px;
+            }
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            .social-links a {
+                width: 100%;
+                justify-content: center;
+            }
+            .creator-block .badges .badge {
+                min-width: 100%;
+            }
+            .support-hero .left .rune-big {
+                font-size: 36px;
+            }
+            .support-hero .left h2 {
+                font-size: 18px;
+            }
+            .support-hero .right .heart {
+                font-size: 36px;
+            }
+            .donate-block h2 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- ===== ШАПКА С МЕНЮ В ДВА РЯДА ===== -->
+        <header>
+            <div class="logo">
+                ᛝᚲᚷᛉᚠᚨᚱ
+                <span>Старший Футарк · 24 руны</span>
+            </div>
+            <nav>
+                <div class="nav-row nav-row-left">
+                    <a href="index.html" class="main-link">
+                        Главная
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚱ</span>
+                            <span class="highlight">Вернуться на главную</span><br>
+                            Главная страница с руническим кругом
+                        </span>
+                    </a>
+                    <a href="runes.html" class="runes-link">
+                        24 Руны Футарха
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚠ</span>
+                            <span class="highlight">Все 24 руны Футарка</span><br>
+                            Значения, символы и атты
+                        </span>
+                    </a>
+                    <a href="rune-horoscope.html" class="horoscope-link">
+                        Рунический гороскоп
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛃ</span>
+                            <span class="highlight">Рунический гороскоп</span><br>
+                            Предсказание по дате рождения
+                        </span>
+                    </a>
+                    <a href="rune-divination.html" class="divination-link">
+                        Гадание на рунах
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛉ</span>
+                            <span class="highlight">Онлайн-гадание на рунах</span><br>
+                            Брось руны и узнай судьбу
+                        </span>
+                    </a>
+                    <a href="gods.html" class="gods-link">
+                        Асы и Боги Скандинавии
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚨ</span>
+                            <span class="highlight">Скандинавские боги</span><br>
+                            Один, Тор, Локи, Фрейя и другие
+                        </span>
+                    </a>
+                    <a href="mifolgi.html" class="myth-link">
+                        Скандинавская мифология
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛝ</span>
+                            <span class="highlight">Подробная страница</span><br>
+                            Девять миров, руны и боги
+                        </span>
+                    </a>
+                    <a href="about.html" class="about-link">
+                        О создании сайте
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛉ</span>
+                            <span class="highlight">О проекте</span><br>
+                            Создатель, цели и поддержка
+                        </span>
+                    </a>
+                </div>
+
+                <div class="nav-row nav-row-right">
+                    <a href="feedback.html" class="feedback-link">
+                        📧 Обратная связь с поддержкой
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚨ</span>
+                            <span class="highlight">Написать разработчику сайта</span><br>
+                            Вопросы, идеи и поддержка
+                        </span>
+                    </a>
+                    <a href="consultation.html" class="support-link" style="color: #c9a050; border-bottom-color: rgba(201,160,80,0.3);">
+                        ✈️ Консультация рунолога
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚨ</span>
+                            <span class="highlight">Консультация рунолога</span><br>
+                            Помощь в вопросах жизни и судьбы
+                        </span>
+                    </a>
+                    <a href="support.html" class="support-link" style="color: #c9a050; border-bottom-color: rgba(201,160,80,0.3);">
+                        ₽ Финансовая поддержка сайта
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛉ</span>
+                            <span class="highlight">Поддержать создателя</span><br>
+                            Финансовая поддержка, информация об авторе
+                        </span>
+                    </a>
+                </div>
+            </nav>
+        </header>
+
+        <!-- ===== СТРАНИЦА ПОДДЕРЖКИ ===== -->
+        <section class="support-page">
+
+            <h1>✦ Поддержать создателя ✦</h1>
+            <p class="subtitle">
+                Если вам откликается этот проект, вы можете поддержать его развитие.<br>
+                Даже небольшой вклад помогает делать сайт лучше.
+            </p>
+
+            <div class="support-hero">
+                <div class="left">
+                    <span class="rune-big">ᛉ</span>
+                    <h2>Спасибо, что вы здесь ✦</h2>
+                    <p>
+                        Этот сайт создан с душой, чашкой кофе и маленькой помощью искусственного интеллекта.
+                        Ваша поддержка — это знак того, что я двигаюсь в правильном направлении.
+                        Все средства пойдут на развитие проекта, новые материалы и улучшение сайта.
+                    </p>
+                </div>
+                <div class="right">
+                    <span class="heart">☕</span>
+                    <div class="text">
+                        Каждый донат — это вклад в сохранение и распространение рунической мудрости.<br><br>
+                        <span style="color: #c9a050;">Благодарю вас от всего сердца. ᛉ</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="donate-block">
+                <h2>✦ Способы поддержки ✦</h2>
+                <p>
+                    Выберите удобный для вас способ. Все средства идут на развитие сайта,<br>
+                    создание новых материалов и улучшение сервиса.
+                </p>
+                <div class="donate-buttons">
+                    <a href="https://www.donationalerts.com/r/ElderFuthark" target="_blank">
+                        <span class="icon">✦</span> DonationAlerts
+                    </a>
+                    <a href="https://boosty.to/ElderFuthark" target="_blank">
+                        <span class="icon">✦</span> Boosty
+                    </a>
+                    <a href="https://www.tbank.ru/rm/r_UTQlDYdoht.DjsPiABpsp/Ip9Qr54681" target="_blank">
+                        <span class="icon">✦</span> Счет СБП
+                    </a>
+                </div>
+                <p style="margin-top: 20px; font-size: 13px; color: #6a5f50; font-style: italic;">
+                    Спасибо, что заглянули. Пусть руны ведут вас правильным путём. ᛉ
+                </p>
+            </div>
+
+            <div class="creator-block">
+                <h2>✦ О создателе ✦</h2>
+                <div class="text">
+                    <p>
+                        Этот сайт был создан <span class="highlight">одним человеком</span> — вдохновением,
+                        чашкой кофе и несколькими бессонными ночами.
+                        В процессе работы я использовал <span class="highlight">искусственный интеллект</span>
+                        как помощника: для генерации идей, структурирования информации и написания кода.
+                        ИИ помог собрать воедино знания о рунах, мифологии и дизайне, но
+                        <span class="highlight">душа и смысл</span> — это ручная работа.
+                    </p>
+                    <p>
+                        <span class="highlight">✦</span> Если вам понравился контент, способ подачи или атмосфера сайта —
+                        я буду <span class="highlight">очень благодарен</span> за вашу поддержку.
+                        <span class="highlight">✦</span> Все средства пойдут на развитие проекта, новые материалы и
+                        улучшение сайта.
+                    </p>
+                </div>
+                <div class="badges">
+                    <div class="badge">
+                        <span class="num">✦</span> Сделано с душой
+                    </div>
+                    <div class="badge">
+                        <span class="num">ᚨ</span> Помощь ИИ в коде
+                    </div>
+                    <div class="badge">
+                        <span class="num">ᛉ</span> Аутентичный подход
+                    </div>
+                    <div class="badge">
+                        <span class="num">✦</span> Постоянное развитие
+                    </div>
+                </div>
+            </div>
+
+            <div class="social-block">
+                <h3>✦ Следите за обновлениями ✦</h3>
+                <p>
+                    Чтобы быть в курсе новых материалов, практических советов и
+                    новостей по улучшению сайта, подписывайтесь на мои каналы:
+                </p>
+                <div class="social-links">
+                    <a href="https://t.me/FutharkRunes" target="_blank" class="tg">
+                        ✈️ Telegram
+                    </a>
+                </div>
+                <div style="margin-top: 16px; font-size: 13px; color: #6a5f50;">
+                    В Telegram я отвечаю на вопросы подписчиков.
+                </div>
+            </div>
+
+            <div class="rune-signature">
+                ᚲᛃᚨᛉᚷᚠᚱ
+            </div>
+
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="index.html" style="color: #c9a050; text-decoration: none; border: 1px solid rgba(201,160,80,0.2); padding: 10px 30px; border-radius: 30px; transition: 0.3s; display: inline-block;" 
+                   onmouseover="this.style.background='rgba(201,160,80,0.1)'; this.style.borderColor='#c9a050';" 
+                   onmouseout="this.style.background='transparent'; this.style.borderColor='rgba(201,160,80,0.2)';">
+                    ← Вернуться на главную
+                </a>
+            </div>
+
+        </section>
+
+        <footer>
+            <p>ᛝᚲᚷᛉᚠᚨᚱ · 24 руны Старшего Футарка</p>
+            <p style="margin-top: 8px;">
+                <a href="index.html">Главная</a> ·
+                <a href="runes.html">Руны</a> ·
+                <a href="support.html">Поддержка</a> ·
+                <a href="about.html">О сайте</a>
+            </p>
+            <p style="margin-top: 15px; font-size: 12px; opacity: 0.6;">
+                © 2026 · ᚲᛃᚨᛉᚷᚠᚱ Сделано с душой и мудростью
+            </p>
+        </footer>
+
+    </div>
+
+</body>
+</html>

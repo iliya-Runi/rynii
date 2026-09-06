@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+     <!-- ===== FAVICON: РУНА АНСУЗ В КРУГЕ ===== -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='none' stroke='%23c9a050' stroke-width='3'/><text x='50' y='68' font-size='55' text-anchor='middle' fill='%23c9a050' font-weight='bold' font-family='serif'>ᚨ</text></svg>">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О сайте — Руны Старшего Футарка</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ===== СТИЛИ СТРАНИЦЫ "О САЙТЕ" ===== */
+        .about-page {
+            padding: 40px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .about-page h1 {
+            font-size: 36px;
+            color: #c9a050;
+            letter-spacing: 4px;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(201, 160, 80, 0.2);
+            padding-bottom: 20px;
+        }
+        .about-page h2 {
+            color: #c9a050;
+            font-size: 22px;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+        .about-page p {
+            color: #b8ab9a;
+            line-height: 1.9;
+            font-size: 16px;
+            font-family: 'Georgia', serif;
+            margin-bottom: 18px;
+        }
+        .about-page ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0 25px;
+        }
+        .about-page ul li {
+            color: #b8ab9a;
+            font-size: 15px;
+            line-height: 1.8;
+            padding: 6px 0 6px 25px;
+            border-bottom: 1px solid rgba(201, 160, 80, 0.05);
+            position: relative;
+            font-family: 'Georgia', serif;
+        }
+        .about-page ul li::before {
+            content: "✦";
+            color: #c9a050;
+            position: absolute;
+            left: 0;
+            font-size: 12px;
+        }
+        .about-page .highlight {
+            color: #c9a050;
+            font-weight: 700;
+        }
+        .about-page .quote-block {
+            background: rgba(20, 20, 35, 0.5);
+            border-left: 3px solid #c9a050;
+            padding: 20px 30px;
+            margin: 30px 0;
+            border-radius: 0 12px 12px 0;
+            font-style: italic;
+            color: #d4c9b8;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            color: #c9a050;
+            text-decoration: none;
+            border: 1px solid rgba(201, 160, 80, 0.2);
+            padding: 10px 30px;
+            border-radius: 30px;
+            transition: 0.3s;
+        }
+        .back-link:hover {
+            background: rgba(201, 160, 80, 0.1);
+            border-color: #c9a050;
+        }
+        .about-page .rune-signature {
+            text-align: center;
+            font-size: 28px;
+            letter-spacing: 8px;
+            color: #c9a050;
+            opacity: 0.4;
+            margin-top: 40px;
+        }
+
+        /* ===== АДАПТАЦИЯ ===== */
+        @media (max-width: 768px) {
+            .about-page h1 {
+                font-size: 28px;
+            }
+        }
+        @media (max-width: 480px) {
+            .about-page h1 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+         <!-- ===== ШАПКА С МЕНЮ В ДВА РЯДА ===== -->
+        <header>
+            <div class="logo">
+                ᛝᚲᚷᛉᚠᚨᚱ
+                <span>Старший Футарк · 24 руны</span>
+            </div>
+            <!-- ===== НАВИГАЦИЯ В ДВА РЯДА ===== -->
+            <nav>
+                <!-- ПЕРВЫЙ РЯД: Основные разделы (по левому краю) -->
+                <div class="nav-row nav-row-left">
+                    <a href="index.html" class="main-link">
+                        Главная
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚱ</span>
+                            <span class="highlight">Вернуться на главную</span><br>
+                            Главная страница с руническим кругом
+                        </span>
+                    </a>
+                    <a href="runes.html" class="runes-link">
+                        24 Руны Футарха
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚠ</span>
+                            <span class="highlight">Все 24 руны Футарка</span><br>
+                            Значения, символы и атты
+                        </span>
+                    </a>
+                    <a href="rune-horoscope.html" class="horoscope-link">
+                        Рунический гороскоп
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛃ</span>
+                            <span class="highlight">Рунический гороскоп</span><br>
+                            Предсказание по дате рождения
+                        </span>
+                    </a>
+                    <a href="rune-divination.html" class="divination-link">
+                        Гадание на рунах
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛉ</span>
+                            <span class="highlight">Онлайн-гадание на рунах</span><br>
+                            Брось руны и узнай судьбу
+                        </span>
+                    </a>
+                    <a href="gods.html" class="gods-link">
+                        Асы и Боги Скандинавии
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚨ</span>
+                            <span class="highlight">Скандинавские боги</span><br>
+                            Один, Тор, Локи, Фрейя и другие
+                        </span>
+                    </a>
+                    <a href="mifolgi.html" class="myth-link">
+                        Скандинавская мифология
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛝ</span>
+                            <span class="highlight">Подробная страница</span><br>
+                            Девять миров, руны и боги
+                        </span>
+                    </a>
+                    <a href="about.html" class="about-link">
+                        О создании сайте
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛉ</span>
+                            <span class="highlight">О проекте</span><br>
+                            Создатель, цели и поддержка
+                        </span>
+                    </a>
+                </div>
+
+                <!-- ВТОРОЙ РЯД: Консультация, Обратная связь, Поддержка (прижаты к правому краю) -->
+                <div class="nav-row nav-row-right">
+                    <a href="feedback.html" class="feedback-link">
+                        📧 Обратная связь с поддержкой
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚨ</span>
+                            <span class="highlight">Написать разработчику сайта</span><br>
+                            Вопросы, идеи и поддержка
+                        </span>
+                    </a>
+                    <a href="consultation.html" class="support-link" style="color: #c9a050; border-bottom-color: rgba(201,160,80,0.3);">
+                        ✈️ Консультация рунолога
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚨ</span>
+                            <span class="highlight">Консультация рунолога</span><br>
+                            Помощь в вопросах жизни и судьбы
+                        </span>
+                    </a>
+                    <a href="support.html" class="support-link" style="color: #c9a050; border-bottom-color: rgba(201,160,80,0.3);">
+                        ₽ Финансовая поддержка сайта
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛉ</span>
+                            <span class="highlight">Поддержать создателя</span><br>
+                            Финансовая поддержка, информация об авторе
+                        </span>
+                    </a>
+                </div>
+            </nav>
+        </header>
+
+        <!-- ===== СТРАНИЦА "О САЙТЕ" ===== -->
+        <section class="about-page">
+
+            <h1>✦ О сайте ✦</h1>
+
+            <p>
+                Этот сайт посвящён <span class="highlight">Старшему Футарку</span> — древнейшей рунической системе,
+                которая использовалась германскими и скандинавскими народами с II по VIII век нашей эры.
+                Здесь собраны все <span class="highlight">24 руны</span>, разделённые на три атта (эттира),
+                с их значениями, символикой и мифологическими корнями.
+            </p>
+
+            <h2>🌿 Зачем этот сайт</h2>
+            <p>
+                Я создал этот проект, чтобы познакомить вас с рунической традицией в её <span class="highlight">аутентичном</span> виде —
+                без искажений, современных гадательных наслоений и упрощений. Здесь руны показаны так, как их видели древние мастера:
+                <span class="highlight">целостными, прямыми и наполненными смыслом</span>.
+            </p>
+
+            <h2>⚔️ Почему нет перевёрнутых рун?</h2>
+            <p>
+                В древности руны не переворачивали. Перевёрнутые значения — это <span class="highlight">современная традиция</span>,
+                появившаяся в XX веке под влиянием тарологии. Для скандинавов руна была целостным символом —
+                её сила не зависела от положения. Мы показываем руны так, как их вырезали на камнях и оружии.
+            </p>
+
+            <h2>📚 Источники вдохновения</h2>
+            <ul>
+                <li>«Старшая Эдда» — сборник древнескандинавских песен о богах и героях</li>
+                <li>«Младшая Эдда» Снорри Стурлусона</li>
+                <li>Археологические находки — рунические камни и амулеты</li>
+                <li>Работы современных рунологов и историков</li>
+            </ul>
+
+            <div class="rune-signature">
+                ᚲᛃᚨᛉᚷᚠᚱ
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="index.html" class="back-link">← Вернуться на главную</a>
+            </div>
+
+        </section>
+
+        <!-- ===== ПОДВАЛ ===== -->
+        <footer>
+            <p>ᛝᚲᚷᛉᚠᚨᚱ · 24 руны Старшего Футарка</p>
+            <p style="margin-top: 8px;">
+                <a href="about.html">О сайте</a> ·
+                <a href="https://t.me/FutharkRunes" target="_blank">Контакты</a>
+            </p>
+            <p style="margin-top: 15px; font-size: 12px; opacity: 0.8;">
+                © 2026 ᚲᛃᚨᛉᚷᚠᚱ Сделано с душой и мудростью
+            </p>
+        </footer>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "Старший Футарк - Руны",
+  "short_name": "Руны Футарка",
+  "description": "Все 24 руны Старшего Футарка с описаниями, мифология и гороскоп",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0d0d1a",
+  "theme_color": "#c9a050",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

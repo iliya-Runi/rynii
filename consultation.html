@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!-- ===== FAVICON: РУНА АНСУЗ В КРУГЕ ===== -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='none' stroke='%23c9a050' stroke-width='3'/><text x='50' y='68' font-size='55' text-anchor='middle' fill='%23c9a050' font-weight='bold' font-family='serif'>ᚨ</text></svg>">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Консультация рунолога | Старший Футарк</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .consult-page {
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .consult-page h1 {
+            font-size: 38px;
+            color: #c9a050;
+            letter-spacing: 4px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .consult-page .subtitle {
+            text-align: center;
+            color: #b8ab9a;
+            font-size: 16px;
+            font-family: 'Georgia', serif;
+            margin-bottom: 35px;
+            line-height: 1.8;
+        }
+
+        .consult-hero {
+            background: rgba(20, 20, 35, 0.4);
+            border: 1px solid rgba(201, 160, 80, 0.08);
+            border-radius: 20px;
+            padding: 40px 35px;
+            margin-bottom: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .consult-hero .left .rune-big {
+            font-size: 72px;
+            color: #c9a050;
+            display: block;
+            text-shadow: 0 0 40px rgba(201, 160, 80, 0.15);
+            margin-bottom: 10px;
+        }
+
+        .consult-hero .left h2 {
+            font-size: 28px;
+            color: #e8ddd0;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .consult-hero .left p {
+            color: #b8ab9a;
+            font-size: 16px;
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+        }
+
+        .consult-hero .right {
+            text-align: center;
+            background: rgba(201, 160, 80, 0.05);
+            border-radius: 16px;
+            padding: 30px 20px;
+            border: 1px solid rgba(201, 160, 80, 0.1);
+        }
+
+        .consult-hero .right .price {
+            font-size: 42px;
+            color: #c9a050;
+            font-weight: 700;
+            font-family: 'Cinzel', serif;
+        }
+
+        .consult-hero .right .price-label {
+            font-size: 14px;
+            color: #6a5f50;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .consult-hero .right .btn-consult {
+            display: inline-block;
+            padding: 16px 45px;
+            background: rgba(201, 160, 80, 0.15);
+            border: 1px solid rgba(201, 160, 80, 0.3);
+            border-radius: 30px;
+            color: #e8c85a;
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            letter-spacing: 2px;
+            text-decoration: none;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .consult-hero .right .btn-consult:hover {
+            background: rgba(201, 160, 80, 0.25);
+            border-color: #c9a050;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(201, 160, 80, 0.15);
+        }
+
+        .consult-hero .right .note {
+            font-size: 12px;
+            color: #6a5f50;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 30px 0 40px;
+        }
+
+        .service-card {
+            background: rgba(20, 20, 35, 0.4);
+            border: 1px solid rgba(201, 160, 80, 0.06);
+            border-radius: 16px;
+            padding: 25px 20px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .service-card:hover {
+            border-color: rgba(201, 160, 80, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .service-card .icon {
+            font-size: 36px;
+            color: #c9a050;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .service-card h3 {
+            color: #e8ddd0;
+            font-size: 18px;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .service-card p {
+            color: #b8ab9a;
+            font-size: 13px;
+            font-family: 'Georgia', serif;
+            line-height: 1.7;
+        }
+
+        .about-me {
+            background: rgba(20, 20, 35, 0.3);
+            border: 1px solid rgba(201, 160, 80, 0.06);
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 40px;
+        }
+
+        .about-me h2 {
+            color: #c9a050;
+            font-size: 24px;
+            letter-spacing: 2px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .about-me .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .about-me .content .text p {
+            color: #b8ab9a;
+            font-size: 15px;
+            font-family: 'Georgia', serif;
+            line-height: 1.9;
+            margin-bottom: 12px;
+        }
+
+        .about-me .content .text .highlight {
+            color: #c9a050;
+            font-weight: 700;
+        }
+
+        .about-me .content .badges {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .about-me .content .badges .badge {
+            background: rgba(201, 160, 80, 0.06);
+            border: 1px solid rgba(201, 160, 80, 0.1);
+            border-radius: 12px;
+            padding: 12px 18px;
+            text-align: center;
+            color: #b8ab9a;
+            font-size: 14px;
+            font-family: 'Georgia', serif;
+        }
+
+        .about-me .content .badges .badge .num {
+            color: #c9a050;
+            font-weight: 700;
+            font-size: 20px;
+            font-family: 'Cinzel', serif;
+        }
+
+        .how-it-works {
+            background: rgba(20, 20, 35, 0.3);
+            border: 1px solid rgba(201, 160, 80, 0.06);
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 40px;
+        }
+
+        .how-it-works h2 {
+            color: #c9a050;
+            font-size: 24px;
+            letter-spacing: 2px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step .num {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(201, 160, 80, 0.1);
+            border: 1px solid rgba(201, 160, 80, 0.2);
+            border-radius: 50%;
+            line-height: 40px;
+            font-size: 18px;
+            color: #c9a050;
+            font-weight: 700;
+            font-family: 'Cinzel', serif;
+            margin-bottom: 10px;
+        }
+
+        .step h4 {
+            color: #e8ddd0;
+            font-size: 16px;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .step p {
+            color: #b8ab9a;
+            font-size: 12px;
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+        }
+
+        .social-block {
+            text-align: center;
+            margin: 30px 0 40px;
+            padding: 35px;
+            background: rgba(20, 20, 35, 0.3);
+            border: 1px solid rgba(201, 160, 80, 0.06);
+            border-radius: 20px;
+        }
+
+        .social-block h2 {
+            color: #c9a050;
+            font-size: 24px;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .social-block p {
+            color: #b8ab9a;
+            font-size: 15px;
+            font-family: 'Georgia', serif;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .social-links .tg {
+            background: #0088cc;
+            color: white;
+            border: 1px solid #0088cc;
+        }
+
+        .social-links .tg:hover {
+            background: #006699;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 136, 204, 0.3);
+        }
+
+        .social-links .yt {
+            background: #ff0000;
+            color: white;
+            border: 1px solid #ff0000;
+        }
+
+        .social-links .yt:hover {
+            background: #cc0000;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3);
+        }
+
+        .social-links .site {
+            background: rgba(201, 160, 80, 0.1);
+            color: #c9a050;
+            border: 1px solid rgba(201, 160, 80, 0.2);
+        }
+
+        .social-links .site:hover {
+            background: rgba(201, 160, 80, 0.2);
+            border-color: #c9a050;
+            transform: translateY(-3px);
+        }
+
+        .reviews {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 25px;
+            margin: 30px 0 40px;
+        }
+
+        .review-card {
+            background: rgba(20, 20, 35, 0.3);
+            border: 1px solid rgba(201, 160, 80, 0.06);
+            border-radius: 16px;
+            padding: 20px 20px 18px;
+        }
+
+        .review-card .text {
+            color: #b8ab9a;
+            font-size: 13px;
+            font-family: 'Georgia', serif;
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        .review-card .author {
+            color: #c9a050;
+            font-size: 13px;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 1px;
+            margin-top: 12px;
+        }
+
+        .review-card .date {
+            font-size: 11px;
+            color: #6a5f50;
+        }
+
+        @media (max-width: 900px) {
+            .consult-hero {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            .services {
+                grid-template-columns: 1fr 1fr;
+            }
+            .steps {
+                grid-template-columns: 1fr 1fr;
+            }
+            .reviews {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .consult-page h1 {
+                font-size: 28px;
+            }
+            .about-me .content {
+                grid-template-columns: 1fr;
+            }
+            .services {
+                grid-template-columns: 1fr;
+            }
+            .steps {
+                grid-template-columns: 1fr;
+            }
+            .reviews {
+                grid-template-columns: 1fr;
+            }
+            .social-links a {
+                padding: 12px 20px;
+                font-size: 12px;
+            }
+            .consult-hero .left h2 {
+                font-size: 22px;
+            }
+            .consult-hero .right .price {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .consult-page h1 {
+                font-size: 22px;
+            }
+            .consult-hero {
+                padding: 25px 20px;
+            }
+            .consult-hero .left .rune-big {
+                font-size: 48px;
+            }
+            .consult-hero .right .btn-consult {
+                padding: 14px 30px;
+                font-size: 14px;
+            }
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            .social-links a {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+      <!-- ===== ШАПКА С МЕНЮ В ДВА РЯДА ===== -->
+        <header>
+            <div class="logo">
+                ᛝᚲᚷᛉᚠᚨᚱ
+                <span>Старший Футарк · 24 руны</span>
+            </div>
+            <!-- ===== НАВИГАЦИЯ В ДВА РЯДА ===== -->
+            <nav>
+                <!-- ПЕРВЫЙ РЯД: Основные разделы (по левому краю) -->
+                <div class="nav-row nav-row-left">
+                    <a href="index.html" class="main-link">
+                        Главная
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚱ</span>
+                            <span class="highlight">Вернуться на главную</span><br>
+                            Главная страница с руническим кругом
+                        </span>
+                    </a>
+                    <a href="runes.html" class="runes-link">
+                        24 Руны Футарха
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚠ</span>
+                            <span class="highlight">Все 24 руны Футарка</span><br>
+                            Значения, символы и атты
+                        </span>
+                    </a>
+                    <a href="rune-horoscope.html" class="horoscope-link">
+                        Рунический гороскоп
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛃ</span>
+                            <span class="highlight">Рунический гороскоп</span><br>
+                            Предсказание по дате рождения
+                        </span>
+                    </a>
+                    <a href="rune-divination.html" class="divination-link">
+                        Гадание на рунах
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛉ</span>
+                            <span class="highlight">Онлайн-гадание на рунах</span><br>
+                            Брось руны и узнай судьбу
+                        </span>
+                    </a>
+                    <a href="gods.html" class="gods-link">
+                        Асы и Боги Скандинавии
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚨ</span>
+                            <span class="highlight">Скандинавские боги</span><br>
+                            Один, Тор, Локи, Фрейя и другие
+                        </span>
+                    </a>
+                    <a href="mifolgi.html" class="myth-link">
+                        Скандинавская мифология
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛝ</span>
+                            <span class="highlight">Подробная страница</span><br>
+                            Девять миров, руны и боги
+                        </span>
+                    </a>
+                    <a href="about.html" class="about-link">
+                        О создании сайте
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛉ</span>
+                            <span class="highlight">О проекте</span><br>
+                            Создатель, цели и поддержка
+                        </span>
+                    </a>
+                </div>
+
+                <!-- ВТОРОЙ РЯД: Консультация, Обратная связь, Поддержка (прижаты к правому краю) -->
+                <div class="nav-row nav-row-right">
+                    <a href="feedback.html" class="feedback-link">
+                        📧 Обратная связь с поддержкой
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚨ</span>
+                            <span class="highlight">Написать разработчику сайта</span><br>
+                            Вопросы, идеи и поддержка
+                        </span>
+                    </a>
+                    <a href="consultation.html" class="support-link" style="color: #c9a050; border-bottom-color: rgba(201,160,80,0.3);">
+                        ✈️ Консультация рунолога
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚨ</span>
+                            <span class="highlight">Консультация рунолога</span><br>
+                            Помощь в вопросах жизни и судьбы
+                        </span>
+                    </a>
+                    <a href="support.html" class="support-link" style="color: #c9a050; border-bottom-color: rgba(201,160,80,0.3);">
+                        ₽ Финансовая поддержка сайта
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛉ</span>
+                            <span class="highlight">Поддержать создателя</span><br>
+                            Финансовая поддержка, информация об авторе
+                        </span>
+                    </a>
+                </div>
+            </nav>
+        </header>
+
+            <div class="about-me">
+                <h2>✦ Об эксперте ✦</h2>
+                <div class="content">
+                    <div class="text">
+                        <p>
+                            Здравствуйте. Я изучаю руны и скандинавскую
+                            традицию. В своей практике я опираюсь на аутентичные источники —
+                            Старшую и Младшую Эдду, археологические находки и работы современных рунологов.
+                        </p>
+                        <p>
+                            Руны не предсказываю будущее — я помогаю людям <span class="highlight">увидеть свой путь</span>
+                            и принять осознанные решения. Каждая консультация — это индивидуальный подход
+                            и глубокое погружение в вашу ситуацию.
+                        </p>
+                    </div>
+                    <div class="badges">
+                        <div class="badge">
+                            <span class="num">✦</span> Древняя традиция
+                        </div>
+                        <div class="badge">
+                            <span class="num">ᚨ</span> Аутентичный подход
+                        </div>
+                        <div class="badge">
+                            <span class="num">ᛉ</span> Индивидуальный разбор
+                        </div>
+                        <div class="badge">
+                            <span class="num">✦</span> Конфиденциальность
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+<div class="consult-hero">
+                <div class="left">
+                    <span class="rune-big">ᛉ</span>
+                    <h2>Сделайте шаг к пониманию своей судьбы</h2>
+                    <p>
+                        Руны помогают увидеть скрытые причины событий, найти выход из трудной ситуации
+                        и обрести внутреннюю гармонию. Эксперт поможет вам прочитать знаки судьбы и
+                        найти ответы на самые важные вопросы.
+                    </p>
+                </div>
+                <div class="right">
+                    <a href="https://t.me/wiztower" target="_blank" class="btn-consult">✧ Записаться ✧</a>
+                    <div class="note">Онлайн-консультация в Telegram</div>
+                </div>
+            </div>
+
+            <div class="how-it-works">
+                <h2>✦ Как проходит консультация ✦</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="num">1</div>
+                        <h4>Знакомство</h4>
+                        <p>Вы рассказываете о своей ситуации и задаёте вопросы.</p>
+                    </div>
+                    <div class="step">
+                        <div class="num">2</div>
+                        <h4>Расклад</h4>
+                        <p>Я делаю рунический расклад, который показывает вашу ситуацию.</p>
+                    </div>
+                    <div class="step">
+                        <div class="num">3</div>
+                        <h4>Разбор</h4>
+                        <p>Мы анализируем расклад, находим корни проблем и возможности.</p>
+                    </div>
+                    <div class="step">
+                        <div class="num">4</div>
+                        <h4>Рекомендации</h4>
+                        <p>Вы получаете практические советы и план действий.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="social-block">
+                <h2>✦ Подпишитесь на мои каналы ✦</h2>
+                <p>
+                    Чтобы быть в курсе новых материалов, практических советов и
+                    новостей подписывайтесь на канал:
+                </p>
+                <div class="social-links">
+                    <a href="https://www.youtube.com/@frothmar" target="_blank" class="yt">
+                        ▶️ YouTube
+                    </a>
+                </div>
+                <div style="margin-top: 20px; font-size: 13px; color: #6a5f50;">
+                    В Telegram и YouTube разбор рун и ответы на вопросы подписчиков.
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ===== ПОДВАЛ ===== -->
+        <footer>
+            <p>ᛝᚲᚷᛉᚠᚨᚱ · 24 руны Старшего Футарка</p>
+            <p style="margin-top: 8px;">
+                <a href="index.html">Главная</a> ·
+                <a href="runes.html">Руны</a> ·
+                <a href="consultation.html">Консультация</a> ·
+                <a href="about.html">О сайте</a>
+            </p>
+            <p style="margin-top: 15px; font-size: 12px; opacity: 0.6;">
+                © 2026 · ᚲᛃᚨᛉᚷᚠᚱ Сделано с душой и мудростью
+            </p>
+        </footer>
+
+    </div>
+
+</body>
+</html>

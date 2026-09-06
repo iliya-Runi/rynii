@@ -1,0 +1,1153 @@
+/* ============================================================
+   ===== ОБЩИЕ СТИЛИ =====
+   ============================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cinzel', 'Georgia', serif;
+    background: #0d0d1a;
+    color: #d4c9b8;
+    min-height: 100vh;
+    background-image:
+        radial-gradient(ellipse at 20% 50%, rgba(201, 160, 80, 0.05) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(201, 160, 80, 0.03) 0%, transparent 50%);
+    padding: 20px;
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* ============================================================
+   ===== ШАПКА =====
+   ============================================================ */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0 30px;
+    border-bottom: 1px solid rgba(201, 160, 80, 0.3);
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: 700;
+    color: #c9a050;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-shadow: 0 0 15px rgba(201, 160, 80, 0.2);
+    flex-shrink: 0;
+}
+
+.logo span {
+    font-size: 16px;
+    color: #8a7a6a;
+    letter-spacing: 2px;
+    display: block;
+    font-weight: 400;
+}
+
+/* ============================================================
+   ===== НАВИГАЦИЯ В ДВА РЯДА =====
+   ============================================================ */
+
+nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    width: 100%;
+}
+
+.nav-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 16px;
+    width: 100%;
+}
+
+.nav-row-left {
+    justify-content: flex-start;
+}
+
+.nav-row-right {
+    justify-content: flex-end;
+}
+
+nav a {
+    color: #b8ab9a;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 1.2px;
+    transition: 0.3s;
+    border-bottom: 2px solid transparent;
+    padding: 6px 10px 4px 10px;
+    position: relative;
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+nav a:hover {
+    color: #c9a050;
+    border-bottom-color: #c9a050;
+}
+
+/* ============================================================
+   ===== ВЫДЕЛЕННЫЕ КНОПКИ В МЕНЮ =====
+   ============================================================ */
+
+.support-link {
+    color: #c9a050 !important;
+    border-bottom-color: rgba(201, 160, 80, 0.3) !important;
+}
+
+.support-link:hover {
+    color: #f0d890 !important;
+    border-bottom-color: #c9a050 !important;
+}
+
+.consult-link-nav {
+    color: #c9a050 !important;
+    border-bottom-color: rgba(201, 160, 80, 0.3) !important;
+    font-weight: 700 !important;
+    background: rgba(201, 160, 80, 0.05);
+    padding: 8px 12px 6px 12px !important;
+    border-radius: 8px;
+    border-bottom: 2px solid #c9a050 !important;
+}
+
+.consult-link-nav:hover {
+    background: rgba(201, 160, 80, 0.12) !important;
+    border-bottom-color: #c9a050 !important;
+    box-shadow: 0 0 20px rgba(201, 160, 80, 0.05);
+}
+
+/* ============================================================
+   ===== ВСПЛЫВАЮЩИЕ ПОДСКАЗКИ =====
+   ============================================================ */
+
+.main-link,
+.runes-link,
+.horoscope-link,
+.divination-link,
+.gods-link,
+.myth-link,
+.consult-link,
+.feedback-link,
+.about-link,
+.support-link {
+    position: relative;
+    cursor: pointer;
+}
+
+.main-link .tooltip,
+.runes-link .tooltip,
+.horoscope-link .tooltip,
+.divination-link .tooltip,
+.gods-link .tooltip,
+.myth-link .tooltip,
+.consult-link .tooltip,
+.feedback-link .tooltip,
+.about-link .tooltip,
+.support-link .tooltip {
+    visibility: hidden;
+    opacity: 0;
+    width: 230px;
+    background: rgba(20, 20, 35, 0.95);
+    color: #d4c9b8;
+    text-align: center;
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: 1px solid rgba(201, 160, 80, 0.2);
+    font-family: 'Georgia', serif;
+    font-size: 14px;
+    line-height: 1.6;
+    letter-spacing: 0.5px;
+    position: absolute;
+    top: calc(100% + 18px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-5px);
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    z-index: 100;
+    pointer-events: none;
+    white-space: normal;
+}
+
+.main-link .tooltip::after,
+.runes-link .tooltip::after,
+.horoscope-link .tooltip::after,
+.divination-link .tooltip::after,
+.gods-link .tooltip::after,
+.myth-link .tooltip::after,
+.consult-link .tooltip::after,
+.feedback-link .tooltip::after,
+.about-link .tooltip::after,
+.support-link .tooltip::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 8px solid transparent;
+    border-bottom-color: rgba(201, 160, 80, 0.2);
+}
+
+.main-link:hover .tooltip,
+.runes-link:hover .tooltip,
+.horoscope-link:hover .tooltip,
+.divination-link:hover .tooltip,
+.gods-link:hover .tooltip,
+.myth-link:hover .tooltip,
+.consult-link:hover .tooltip,
+.feedback-link:hover .tooltip,
+.about-link:hover .tooltip,
+.support-link:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.main-link .tooltip .highlight,
+.runes-link .tooltip .highlight,
+.horoscope-link .tooltip .highlight,
+.divination-link .tooltip .highlight,
+.gods-link .tooltip .highlight,
+.myth-link .tooltip .highlight,
+.consult-link .tooltip .highlight,
+.feedback-link .tooltip .highlight,
+.about-link .tooltip .highlight,
+.support-link .tooltip .highlight {
+    color: #e8c85a;
+    font-weight: 700;
+    font-family: 'Cinzel', serif;
+}
+
+.main-link .tooltip .rune-icon,
+.runes-link .tooltip .rune-icon,
+.horoscope-link .tooltip .rune-icon,
+.divination-link .tooltip .rune-icon,
+.gods-link .tooltip .rune-icon,
+.myth-link .tooltip .rune-icon,
+.consult-link .tooltip .rune-icon,
+.feedback-link .tooltip .rune-icon,
+.about-link .tooltip .rune-icon,
+.support-link .tooltip .rune-icon {
+    color: #e8c85a;
+    font-size: 20px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+/* ============================================================
+   ===== АДАПТАЦИЯ НАВИГАЦИИ =====
+   ============================================================ */
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+    nav {
+        align-items: center;
+    }
+    nav a {
+        font-size: 13px;
+        padding: 5px 8px 3px 8px;
+        letter-spacing: 1px;
+    }
+    .nav-row {
+        gap: 6px 12px;
+        justify-content: center !important;
+    }
+    .nav-row-right {
+        justify-content: center !important;
+    }
+    .nav-row-left {
+        justify-content: center !important;
+    }
+    .main-link .tooltip,
+    .runes-link .tooltip,
+    .horoscope-link .tooltip,
+    .divination-link .tooltip,
+    .gods-link .tooltip,
+    .myth-link .tooltip,
+    .consult-link .tooltip,
+    .feedback-link .tooltip,
+    .about-link .tooltip,
+    .support-link .tooltip {
+        width: 200px;
+        font-size: 13px;
+        padding: 12px 14px;
+        top: calc(100% + 12px);
+    }
+    .main-link .tooltip .rune-icon,
+    .runes-link .tooltip .rune-icon,
+    .horoscope-link .tooltip .rune-icon,
+    .divination-link .tooltip .rune-icon,
+    .gods-link .tooltip .rune-icon,
+    .myth-link .tooltip .rune-icon,
+    .consult-link .tooltip .rune-icon,
+    .feedback-link .tooltip .rune-icon,
+    .about-link .tooltip .rune-icon,
+    .support-link .tooltip .rune-icon {
+        font-size: 18px;
+    }
+    .consult-link-nav {
+        padding: 6px 8px 4px 8px !important;
+        font-size: 13px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    nav a {
+        font-size: 11px;
+        padding: 4px 6px 2px 6px;
+        letter-spacing: 0.5px;
+    }
+    .nav-row {
+        gap: 4px 8px;
+    }
+    .main-link .tooltip,
+    .runes-link .tooltip,
+    .horoscope-link .tooltip,
+    .divination-link .tooltip,
+    .gods-link .tooltip,
+    .myth-link .tooltip,
+    .consult-link .tooltip,
+    .feedback-link .tooltip,
+    .about-link .tooltip,
+    .support-link .tooltip {
+        width: 160px;
+        font-size: 11px;
+        padding: 10px 12px;
+        top: calc(100% + 10px);
+    }
+    .consult-link-nav {
+        padding: 5px 6px 3px 6px !important;
+        font-size: 11px !important;
+    }
+}
+
+/* ============================================================
+   ===== ГЕРОЙ (ГЛАВНАЯ СТРАНИЦА) =====
+   ============================================================ */
+
+.hero {
+    text-align: center;
+    padding: 60px 20px 70px;
+    background: linear-gradient(180deg, rgba(201, 160, 80, 0.05) 0%, transparent 100%);
+    border-radius: 20px;
+    margin-bottom: 50px;
+    border: 1px solid rgba(201, 160, 80, 0.1);
+}
+
+.hero h1 {
+    font-size: 48px;
+    color: #c9a050;
+    text-shadow: 0 0 30px rgba(201, 160, 80, 0.2);
+    letter-spacing: 6px;
+    margin-bottom: 10px;
+}
+
+.hero .subtitle {
+    font-size: 15px;
+    color: #b8ab9a;
+    max-width: 700px;
+    margin: 0 auto 10px;
+    letter-spacing: 1px;
+    line-height: 1.8;
+}
+
+.hero .rune-symbol {
+    font-size: 60px;
+    display: block;
+    margin-bottom: 20px;
+    color: #c9a050;
+    opacity: 0.6;
+    letter-spacing: 20px;
+}
+
+/* ============================================================
+   ===== ЗАГОЛОВКИ АТТОВ =====
+   ============================================================ */
+
+.att-title {
+    text-align: center;
+    color: #c9a050;
+    font-size: 28px;
+    letter-spacing: 8px;
+    margin: 60px 0 30px;
+    padding: 15px 0;
+    border-top: 1px solid rgba(201, 160, 80, 0.1);
+    border-bottom: 1px solid rgba(201, 160, 80, 0.1);
+    text-transform: uppercase;
+}
+
+.att-title span {
+    color: #6a5f50;
+    font-size: 14px;
+    letter-spacing: 3px;
+    display: block;
+    margin-top: 5px;
+    font-weight: 400;
+}
+
+/* ============================================================
+   ===== СЕТКА РУН =====
+   ============================================================ */
+
+.rune-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+    margin: 20px 0 30px;
+    align-items: stretch;
+}
+
+.rune-grid a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.rune-card {
+    background: rgba(30, 30, 50, 0.6);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(201, 160, 80, 0.12);
+    border-radius: 16px;
+    padding: 22px 12px 20px;
+    text-align: center;
+    transition: 0.4s ease;
+    cursor: default;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    height: 100%;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.rune-card:hover {
+    transform: translateY(-8px);
+    border-color: #c9a050;
+    box-shadow: 0 15px 40px rgba(201, 160, 80, 0.15);
+    background: rgba(40, 35, 45, 0.8);
+}
+
+.rune-card .symbol {
+    font-size: 48px;
+    color: #c9a050;
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+    text-shadow: 0 0 20px rgba(201, 160, 80, 0.1);
+    flex-shrink: 0;
+}
+
+.rune-card .name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #e8ddd0;
+    margin-bottom: 6px;
+    letter-spacing: 2px;
+    flex-shrink: 0;
+}
+
+.rune-card .meaning {
+    font-size: 13px;
+    color: #a89988;
+    line-height: 1.5;
+    font-family: 'Georgia', serif;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.rune-card .meaning span {
+    display: block;
+    font-size: 11px;
+    color: #c9a050;
+    margin-top: 6px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    font-family: 'Cinzel', serif;
+}
+
+/* ============================================================
+   ===== СТРАНИЦА РУНЫ (ДЕТАЛЬНАЯ) =====
+   ============================================================ */
+
+.rune-page {
+    background: rgba(20, 20, 35, 0.6);
+    border-radius: 24px;
+    padding: 50px 45px;
+    border: 1px solid rgba(201, 160, 80, 0.12);
+    margin-bottom: 40px;
+}
+
+.rune-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.rune-header .symbol {
+    font-size: 100px;
+    color: #c9a050;
+    display: block;
+    text-shadow: 0 0 50px rgba(201, 160, 80, 0.15);
+    margin-bottom: 10px;
+}
+
+.rune-header .name {
+    font-size: 42px;
+    font-weight: 700;
+    color: #e8ddd0;
+    letter-spacing: 6px;
+}
+
+.rune-header .name-en {
+    font-size: 18px;
+    color: #6a5f50;
+    letter-spacing: 4px;
+    margin-top: 5px;
+}
+
+.rune-header .att {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 6px 25px;
+    border: 1px solid rgba(201, 160, 80, 0.25);
+    border-radius: 30px;
+    font-size: 12px;
+    color: #c9a050;
+    letter-spacing: 3px;
+}
+
+/* ===== ДЕТАЛЬНОЕ ОПИСАНИЕ ===== */
+
+.rune-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin: 30px 0 40px;
+}
+
+.detail-block {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 16px;
+    padding: 25px 20px;
+    border: 1px solid rgba(201, 160, 80, 0.06);
+}
+
+.detail-block h3 {
+    color: #c9a050;
+    font-size: 16px;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.detail-block p {
+    color: #b8ab9a;
+    font-size: 15px;
+    line-height: 1.9;
+    font-family: 'Georgia', serif;
+}
+
+.detail-block ul {
+    list-style: none;
+    padding: 0;
+}
+
+.detail-block ul li {
+    color: #b8ab9a;
+    font-size: 14px;
+    line-height: 1.8;
+    padding: 6px 0 6px 20px;
+    border-bottom: 1px solid rgba(201, 160, 80, 0.05);
+    position: relative;
+}
+
+.detail-block ul li::before {
+    content: "✦";
+    color: #c9a050;
+    position: absolute;
+    left: 0;
+    font-size: 10px;
+}
+
+/* ============================================================
+   ===== НАВИГАЦИЯ ПО РУНАМ =====
+   ============================================================ */
+
+.rune-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(201, 160, 80, 0.1);
+}
+
+.rune-nav a {
+    color: #c9a050;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 2px;
+    transition: 0.3s;
+    padding: 8px 20px;
+    border: 1px solid rgba(201, 160, 80, 0.15);
+    border-radius: 30px;
+}
+
+.rune-nav a:hover {
+    background: rgba(201, 160, 80, 0.1);
+    border-color: #c9a050;
+}
+
+.rune-nav .back-link {
+    border-color: transparent;
+    color: #6a5f50;
+}
+
+.rune-nav .back-link:hover {
+    border-color: rgba(201, 160, 80, 0.2);
+    color: #c9a050;
+}
+
+/* ============================================================
+   ===== РАЗДЕЛ МИФОЛОГИИ =====
+   ============================================================ */
+
+.myth-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin: 70px 0 40px;
+    padding: 40px;
+    background: rgba(20, 20, 35, 0.5);
+    border-radius: 20px;
+    border: 1px solid rgba(201, 160, 80, 0.08);
+}
+
+.myth-section h2 {
+    font-size: 28px;
+    color: #c9a050;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    grid-column: 1 / -1;
+    text-align: center;
+}
+
+.myth-text {
+    color: #b8ab9a;
+    line-height: 1.9;
+    font-size: 16px;
+    font-family: 'Georgia', serif;
+}
+
+.myth-text strong {
+    color: #c9a050;
+}
+
+.myth-text:last-of-type {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #6a5f50;
+    font-style: italic;
+    border-top: 1px solid rgba(201, 160, 80, 0.1);
+    padding-top: 25px;
+}
+
+/* ============================================================
+   ===== ПОДВАЛ =====
+   ============================================================ */
+
+footer {
+    margin-top: 40px;
+    padding: 30px 0 20px;
+    border-top: 1px solid rgba(201, 160, 80, 0.15);
+    text-align: center;
+    color: #6a5f50;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+footer a {
+    color: #8a7a6a;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+footer a:hover {
+    color: #c9a050;
+}
+
+/* ============================================================
+   ===== СТРАНИЦА ПОДДЕРЖКИ =====
+   ============================================================ */
+
+.support-page {
+    padding: 40px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.support-page h1 {
+    font-size: 38px;
+    color: #c9a050;
+    letter-spacing: 4px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.support-page .subtitle {
+    text-align: center;
+    color: #b8ab9a;
+    font-size: 16px;
+    font-family: 'Georgia', serif;
+    margin-bottom: 35px;
+    line-height: 1.8;
+}
+
+.support-hero {
+    background: rgba(20, 20, 35, 0.5);
+    border: 1px solid rgba(201, 160, 80, 0.08);
+    border-radius: 20px;
+    padding: 40px 35px;
+    margin-bottom: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.support-hero .left .rune-big {
+    font-size: 72px;
+    color: #c9a050;
+    display: block;
+    text-shadow: 0 0 40px rgba(201, 160, 80, 0.15);
+    margin-bottom: 10px;
+}
+
+.support-hero .left h2 {
+    font-size: 28px;
+    color: #e8ddd0;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.support-hero .left p {
+    color: #b8ab9a;
+    font-size: 16px;
+    font-family: 'Georgia', serif;
+    line-height: 1.8;
+}
+
+.support-hero .right {
+    text-align: center;
+    background: rgba(201, 160, 80, 0.05);
+    border-radius: 16px;
+    padding: 30px 20px;
+    border: 1px solid rgba(201, 160, 80, 0.1);
+}
+
+.support-hero .right .heart {
+    font-size: 48px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.support-hero .right .text {
+    color: #b8ab9a;
+    font-size: 14px;
+    font-family: 'Georgia', serif;
+    line-height: 1.7;
+}
+
+.donate-block {
+    background: rgba(20, 20, 35, 0.4);
+    border: 1px solid rgba(201, 160, 80, 0.08);
+    border-radius: 20px;
+    padding: 35px 30px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.donate-block h2 {
+    color: #c9a050;
+    font-size: 26px;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+}
+
+.donate-block p {
+    color: #b8ab9a;
+    font-size: 15px;
+    font-family: 'Georgia', serif;
+    line-height: 1.8;
+    max-width: 700px;
+    margin: 0 auto 25px;
+}
+
+.donate-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.donate-buttons a {
+    display: inline-block;
+    padding: 14px 40px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+    transition: 0.3s;
+    border: 1px solid rgba(201, 160, 80, 0.2);
+    background: rgba(201, 160, 80, 0.08);
+    color: #e8c85a;
+}
+
+.donate-buttons a:hover {
+    background: rgba(201, 160, 80, 0.2);
+    border-color: #c9a050;
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(201, 160, 80, 0.1);
+}
+
+.donate-buttons a .icon {
+    margin-right: 8px;
+}
+
+.creator-block {
+    background: rgba(20, 20, 35, 0.3);
+    border: 1px solid rgba(201, 160, 80, 0.06);
+    border-radius: 20px;
+    padding: 35px 30px;
+    margin-bottom: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.creator-block h2 {
+    color: #c9a050;
+    font-size: 24px;
+    letter-spacing: 2px;
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.creator-block .text p {
+    color: #b8ab9a;
+    font-size: 15px;
+    font-family: 'Georgia', serif;
+    line-height: 1.9;
+    margin-bottom: 12px;
+}
+
+.creator-block .text .highlight {
+    color: #c9a050;
+    font-weight: 700;
+}
+
+.creator-block .badges {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+}
+
+.creator-block .badges .badge {
+    background: rgba(201, 160, 80, 0.06);
+    border: 1px solid rgba(201, 160, 80, 0.1);
+    border-radius: 12px;
+    padding: 12px 18px;
+    text-align: center;
+    color: #b8ab9a;
+    font-size: 14px;
+    font-family: 'Georgia', serif;
+}
+
+.creator-block .badges .badge .num {
+    color: #c9a050;
+    font-weight: 700;
+    font-size: 18px;
+    font-family: 'Cinzel', serif;
+}
+
+.social-block {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 30px;
+    background: rgba(20, 20, 35, 0.3);
+    border: 1px solid rgba(201, 160, 80, 0.06);
+    border-radius: 20px;
+}
+
+.social-block h3 {
+    color: #c9a050;
+    font-size: 20px;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.social-block p {
+    color: #b8ab9a;
+    font-size: 14px;
+    font-family: 'Georgia', serif;
+    margin-bottom: 18px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.social-links .tg {
+    background: #0088cc;
+    color: white;
+    border: 1px solid #0088cc;
+}
+
+.social-links .tg:hover {
+    background: #006699;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 136, 204, 0.3);
+}
+
+.social-links .yt {
+    background: #ff0000;
+    color: white;
+    border: 1px solid #ff0000;
+}
+
+.social-links .yt:hover {
+    background: #cc0000;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3);
+}
+
+.rune-signature {
+    text-align: center;
+    font-size: 28px;
+    letter-spacing: 8px;
+    color: #c9a050;
+    opacity: 0.3;
+    margin: 20px 0 10px;
+}
+
+/* ============================================================
+   ===== АДАПТАЦИЯ СТРАНИЦЫ ПОДДЕРЖКИ =====
+   ============================================================ */
+
+@media (max-width: 992px) {
+    .support-hero {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    .creator-block {
+        grid-template-columns: 1fr;
+    }
+    .creator-block .badges {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .creator-block .badges .badge {
+        flex: 1;
+        min-width: 150px;
+    }
+}
+
+@media (max-width: 768px) {
+    .support-page h1 {
+        font-size: 28px;
+    }
+    .support-hero {
+        padding: 25px 20px;
+    }
+    .support-hero .left .rune-big {
+        font-size: 48px;
+    }
+    .support-hero .left h2 {
+        font-size: 22px;
+    }
+    .donate-block {
+        padding: 25px 20px;
+    }
+    .donate-block h2 {
+        font-size: 22px;
+    }
+    .creator-block {
+        padding: 25px 20px;
+    }
+    .creator-block h2 {
+        font-size: 20px;
+    }
+    .social-links a {
+        padding: 10px 20px;
+        font-size: 12px;
+    }
+    .donate-buttons a {
+        padding: 12px 25px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .support-page h1 {
+        font-size: 22px;
+    }
+    .donate-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    .donate-buttons a {
+        width: 100%;
+        text-align: center;
+        padding: 12px 20px;
+        font-size: 13px;
+    }
+    .social-links {
+        flex-direction: column;
+        align-items: center;
+    }
+    .social-links a {
+        width: 100%;
+        justify-content: center;
+    }
+    .creator-block .badges .badge {
+        min-width: 100%;
+    }
+    .support-hero .left .rune-big {
+        font-size: 36px;
+    }
+    .support-hero .left h2 {
+        font-size: 18px;
+    }
+    .support-hero .right .heart {
+        font-size: 36px;
+    }
+    .donate-block h2 {
+        font-size: 18px;
+    }
+}
+
+/* ============================================================
+   ===== ОБЩАЯ АДАПТАЦИЯ =====
+   ============================================================ */
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 32px;
+    }
+    .rune-grid {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 18px;
+    }
+    .rune-card .symbol {
+        font-size: 38px;
+    }
+    .rune-page {
+        padding: 30px 20px;
+    }
+    .rune-header .symbol {
+        font-size: 72px;
+    }
+    .rune-header .name {
+        font-size: 30px;
+    }
+    .rune-details {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .rune-nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .myth-section {
+        grid-template-columns: 1fr;
+        padding: 25px;
+    }
+    .att-title {
+        font-size: 22px;
+        letter-spacing: 4px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 26px;
+    }
+    .rune-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+    .rune-card {
+        padding: 16px 8px 18px;
+        min-height: 200px;
+    }
+    .rune-card .symbol {
+        font-size: 32px;
+    }
+    .rune-card .name {
+        font-size: 16px;
+    }
+    .rune-card .meaning {
+        font-size: 11px;
+    }
+    .rune-header .symbol {
+        font-size: 56px;
+    }
+    .rune-header .name {
+        font-size: 24px;
+        letter-spacing: 3px;
+    }
+    .rune-page {
+        padding: 20px 15px;
+    }
+    .detail-block {
+        padding: 18px 15px;
+    }
+    .att-title {
+        font-size: 18px;
+    }
+    .myth-section {
+        padding: 20px;
+    }
+}

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+     <!-- ===== FAVICON: РУНА АНСУЗ В КРУГЕ ===== -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='none' stroke='%23c9a050' stroke-width='3'/><text x='50' y='68' font-size='55' text-anchor='middle' fill='%23c9a050' font-weight='bold' font-family='serif'>ᚨ</text></svg>">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Боги Скандинавии — Старший Футарк</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .hero-gods {
+            text-align: center;
+            padding: 60px 20px 70px;
+            background: linear-gradient(180deg, rgba(201, 160, 80, 0.05) 0%, transparent 100%);
+            border-radius: 20px;
+            margin-bottom: 50px;
+            border: 1px solid rgba(201, 160, 80, 0.1);
+        }
+
+        .hero-gods h1 {
+            font-size: 48px;
+            color: #c9a050;
+            text-shadow: 0 0 30px rgba(201, 160, 80, 0.2);
+            letter-spacing: 6px;
+            margin-bottom: 15px;
+        }
+
+        .hero-gods p {
+            font-size: 18px;
+            color: #b8ab9a;
+            max-width: 700px;
+            margin: 0 auto 10px;
+            letter-spacing: 1px;
+            line-height: 1.8;
+        }
+
+        .gods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 30px 0 50px;
+        }
+
+        .god-card {
+            background: rgba(20, 20, 35, 0.5);
+            border: 1px solid rgba(201, 160, 80, 0.08);
+            border-radius: 20px;
+            padding: 30px 25px 25px;
+            transition: 0.4s ease;
+            backdrop-filter: blur(4px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .god-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(201, 160, 80, 0.25);
+            box-shadow: 0 15px 40px rgba(201, 160, 80, 0.05);
+            background: rgba(30, 30, 50, 0.5);
+        }
+
+        .god-card .symbol {
+            font-size: 48px;
+            color: #c9a050;
+            margin-bottom: 12px;
+            opacity: 0.7;
+        }
+
+        .god-card .name {
+            font-size: 24px;
+            font-weight: 700;
+            color: #e8ddd0;
+            letter-spacing: 3px;
+            margin-bottom: 4px;
+        }
+
+        .god-card .name-en {
+            font-size: 14px;
+            color: #6a5f50;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .god-card .description {
+            font-size: 14px;
+            color: #b8ab9a;
+            line-height: 1.7;
+            font-family: 'Georgia', serif;
+        }
+
+        .god-card .description span {
+            color: #c9a050;
+            font-weight: 700;
+        }
+
+        .god-card .tag {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 4px 18px;
+            border: 1px solid rgba(201, 160, 80, 0.15);
+            border-radius: 30px;
+            font-size: 11px;
+            color: #c9a050;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .quote-block {
+            text-align: center;
+            padding: 40px;
+            background: rgba(20, 20, 35, 0.4);
+            border-radius: 20px;
+            border: 1px solid rgba(201, 160, 80, 0.06);
+            margin: 20px 0 50px;
+        }
+
+        .quote-block .quote {
+            font-size: 22px;
+            color: #d4c9b8;
+            font-style: italic;
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .quote-block .author {
+            font-size: 14px;
+            color: #6a5f50;
+            letter-spacing: 2px;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-gods h1 {
+                font-size: 32px;
+            }
+            .gods-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+            .god-card {
+                padding: 20px 15px;
+            }
+            .god-card .symbol {
+                font-size: 36px;
+            }
+            .god-card .name {
+                font-size: 20px;
+            }
+            .quote-block .quote {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gods-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            .hero-gods h1 {
+                font-size: 26px;
+            }
+            .god-card .symbol {
+                font-size: 32px;
+            }
+            .god-card .name {
+                font-size: 18px;
+            }
+            .god-card .description {
+                font-size: 13px;
+            }
+            .quote-block .quote {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- ===== ШАПКА С МЕНЮ В ДВА РЯДА ===== -->
+        <header>
+            <div class="logo">
+                ᛝᚲᚷᛉᚠᚨᚱ
+                <span>Старший Футарк · 24 руны</span>
+            </div>
+            <!-- ===== НАВИГАЦИЯ В ДВА РЯДА ===== -->
+            <nav>
+                <!-- ПЕРВЫЙ РЯД: Основные разделы (по левому краю) -->
+                <div class="nav-row nav-row-left">
+                    <a href="index.html" class="main-link">
+                        Главная
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚱ</span>
+                            <span class="highlight">Вернуться на главную</span><br>
+                            Главная страница с руническим кругом
+                        </span>
+                    </a>
+                    <a href="runes.html" class="runes-link">
+                        24 Руны Футарха
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚠ</span>
+                            <span class="highlight">Все 24 руны Футарка</span><br>
+                            Значения, символы и атты
+                        </span>
+                    </a>
+                    <a href="rune-horoscope.html" class="horoscope-link">
+                        Рунический гороскоп
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛃ</span>
+                            <span class="highlight">Рунический гороскоп</span><br>
+                            Предсказание по дате рождения
+                        </span>
+                    </a>
+                    <a href="rune-divination.html" class="divination-link">
+                        Гадание на рунах
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛉ</span>
+                            <span class="highlight">Онлайн-гадание на рунах</span><br>
+                            Брось руны и узнай судьбу
+                        </span>
+                    </a>
+                    <a href="gods.html" class="gods-link">
+                        Асы и Боги Скандинавии
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚨ</span>
+                            <span class="highlight">Скандинавские боги</span><br>
+                            Один, Тор, Локи, Фрейя и другие
+                        </span>
+                    </a>
+                    <a href="mifolgi.html" class="myth-link">
+                        Скандинавская мифология
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛝ</span>
+                            <span class="highlight">Подробная страница</span><br>
+                            Девять миров, руны и боги
+                        </span>
+                    </a>
+                    <a href="about.html" class="about-link">
+                        О создании сайте
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛉ</span>
+                            <span class="highlight">О проекте</span><br>
+                            Создатель, цели и поддержка
+                        </span>
+                    </a>
+                </div>
+
+                <!-- ВТОРОЙ РЯД: Консультация, Обратная связь, Поддержка (прижаты к правому краю) -->
+                <div class="nav-row nav-row-right">
+                    <a href="feedback.html" class="feedback-link">
+                        📧 Обратная связь с поддержкой
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚨ</span>
+                            <span class="highlight">Написать разработчику сайта</span><br>
+                            Вопросы, идеи и поддержка
+                        </span>
+                    </a>
+                    <a href="consultation.html" class="support-link" style="color: #c9a050; border-bottom-color: rgba(201,160,80,0.3);">
+                        ✈️ Консультация рунолога
+                        <span class="tooltip">
+                            <span class="rune-icon">ᚨ</span>
+                            <span class="highlight">Консультация рунолога</span><br>
+                            Помощь в вопросах жизни и судьбы
+                        </span>
+                    </a>
+                    <a href="support.html" class="support-link" style="color: #c9a050; border-bottom-color: rgba(201,160,80,0.3);">
+                        ₽ Финансовая поддержка сайта
+                        <span class="tooltip">
+                            <span class="rune-icon">ᛉ</span>
+                            <span class="highlight">Поддержать создателя</span><br>
+                            Финансовая поддержка, информация об авторе
+                        </span>
+                    </a>
+                </div>
+            </nav>
+        </header>
+
+        <!-- ===== ГЕРОЙ ===== -->
+        <section class="hero-gods">
+            <h1>✦ Боги Скандинавии ✦</h1>
+            <p>
+                Девять миров, три пантеона и воля злого рока, сплетённая из силы, мудрости и жертвенности.
+                Вот главные лица скандинавских саг — те, кто правят, сражаются и умирают, чтобы мир продолжился.
+            </p>
+        </section>
+
+        <!-- ===== КАРТОЧКИ БОГОВ ===== -->
+        <div class="gods-grid">
+
+            <div class="god-card">
+                <div class="symbol">ᚨ</div>
+                <div class="name">Один</div>
+                <div class="name-en">Óðinn</div>
+                <div class="description">
+                    <span>Всеотец</span>, бог мудрости, войны и поэзии.
+                    Пожертвовал глазом и девять дней висел на древе, чтобы постичь руны.
+                </div>
+                <div class="tag">✦ Верховный бог</div>
+            </div>
+
+            <div class="god-card">
+                <div class="symbol">ᚦ</div>
+                <div class="name">Тор</div>
+                <div class="name-en">Þórr</div>
+                <div class="description">
+                    <span>Бог грома</span>, защитник людей и Асгарда.
+                    С молотом Мьёльниром сокрушает великанов. Самый почитаемый бог у викингов.
+                </div>
+                <div class="tag">✦ Защитник</div>
+            </div>
+
+            <div class="god-card">
+                <div class="symbol">ᚲ</div>
+                <div class="name">Локи</div>
+                <div class="name-en">Loki</div>
+                <div class="description">
+                    <span>Бог хаоса</span>, обманщик и перевёртыш.
+                    Отец чудовищ и виновник гибели богов. Искусный манипулятор, который всегда сеет сомнения.
+                </div>
+                <div class="tag">✦ Хаос · Иллюзия</div>
+            </div>
+
+            <div class="god-card">
+                <div class="symbol">ᚠ</div>
+                <div class="name">Фрейя</div>
+                <div class="name-en">Freyja</div>
+                <div class="description">
+                    <span>Богиня любви и войны</span>, предводительница валькирий.
+                    Красивейшая из богинь, владеет магией сейд и учит ей других.
+                </div>
+                <div class="tag">✦ Любовь · Магия</div>
+            </div>
+
+            <div class="god-card">
+                <div class="symbol">ᛏ</div>
+                <div class="name">Тюр</div>
+                <div class="name-en">Týr</div>
+                <div class="description">
+                    <span>Бог воинской чести</span> и правосудия.
+                    Пожертвовал рукой, чтобы сковать волка Фенрира. Без его силы нет победы, а без правды нет мира.
+                </div>
+                <div class="tag">✦ Честь · Справедливость</div>
+            </div>
+
+            <div class="god-card">
+                <div class="symbol">ᛉ</div>
+                <div class="name">Хеймдалль</div>
+                <div class="name-en">Heimdallr</div>
+                <div class="description">
+                    <span>Страж Асгарда</span>, хранитель моста Бифрост.
+                    Слышит, как растёт трава, и видит за сотню миль. Его рог Гьяллархорн возвестит о начале Рагнарёка.
+                </div>
+                <div class="tag">✦ Страж · Бдительность</div>
+            </div>
+
+        </div>
+
+        <!-- ===== ЦИТАТА ===== -->
+        <div class="quote-block">
+            <div class="quote">
+                «Умирают люди, умирают боги — но руны и память о них живут в тех, кто помнит.»
+            </div>
+            <div class="author">— из Старшей Эдды</div>
+        </div>
+
+        <!-- ===== ПОДВАЛ ===== -->
+        <footer>
+            <p>ᛝᚲᚷᛉᚠᚨᚱ · 24 руны Старшего Футарка</p>
+            <p style="margin-top: 8px;">
+                <a href="index.html">Главная</a> ·
+                <a href="runes.html">Руны</a> ·
+                <a href="gods.html">Боги</a> ·
+                <a href="about.html">О сайте</a>
+            </p>
+            <p style="margin-top: 15px; font-size: 12px; opacity: 0.6;">
+                © 2026 · ᚲᛃᚨᛉᚷᚠᚱ Сделано с душой и мудростью
+            </p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
